@@ -10,6 +10,5 @@ run_list(
     "role[default]",
     "role[app]",
     "role[db]",
-    "role[media]",
-    "recipe[costore]"
+    "recipe[symfony]"
 )

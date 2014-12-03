@@ -30,13 +30,6 @@ include_recipe "default::timezone"
 
 include_recipe "ntp"
 
-# install  domain
-include_recipe "avahi"
-# install domain aliases only if domain_aliases is set
-unless node[:domain_aliases].nil?
-    include_recipe "default::avahi-aliases" unless node[:domain_aliases].empty?
-end
-
 # install some packages for development scope
 %w{mc htop ncdu mtr grc tmux zsh sysv-rc-conf}.each do |pkg|
     package pkg do

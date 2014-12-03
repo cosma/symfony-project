@@ -31,52 +31,11 @@ availableNodes = [
 
     #   All-Inn server
     {
-        :name => "costore",
-        :description => "Costore Server - all software installed: App, PHP, Nginx, Memcached, Mysql, ElasticSearch, Media - for faster development",
+        :name => "symfony",
+        :description => "Costore Server - all software installed: App, PHP, Nginx, Mysql",
         :ip => '192.168.50.10',
         :memory => 2048
-        },
-
-#     #   Application server
-#     {
-#         :name => 'app',
-#         :description => "Application server - App, PHP, Nginx, Memcached, Solr slave - for testing server infrastructure",
-#         :ip => '192.168.50.20',
-#         :memory => 1024
-#         },
-#
-#     #   Db Server
-#     {
-#         :name => 'db',
-#         :description => "Db Server - Mysql - for testing server infrastructure",
-#         :ip => '192.168.50.30',
-#         :memory => 512
-#         },
-#
-#     #   Elastic Search
-#     {
-#         :name => 'elasticsearch',
-#         :description => "Elastic Search",
-#         :ip => '192.168.50.40',
-#         :memory => 512
-#         },
-#
-#     #   Media server
-#     {
-#         :name => 'media',
-#         :description => "Media server - Nginx, Media - for testing server infrastructure",
-#         :ip => '192.168.50.50',
-#         :memory => 256
-#         },
-#
-#     #   Load Balancer server
-#     {
-#         :name => 'balancer',
-#         :description => "Load Balancer server - Nginx lb, Memcached sessions - for testing server infrastructure",
-#         :ip => '192.168.50.60',
-#         :memory => 256
-#         },
-
+        }
 ]
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
