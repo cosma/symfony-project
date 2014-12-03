@@ -1,0 +1,27 @@
+
+server {
+    listen      <%= @port %>;
+    server_name <%= @domain %>;
+    root        <%= @root_directory %>;
+
+    access_log  off;
+    error_log   <%= @log_dir %>/media_error.log crit;
+
+    location /nginx_status {
+        stub_status on;
+        access_log off;
+        allow 127.0.0.1;
+        deny all;
+    }
+
+    # Serve static files directly from nginx
+    location ~* \.(jpg|jpeg|gif|png|bmp|ico|pdf|flv|swf|exe|html|htm|txt|css|js) {
+        add_header        Cache-Control public;
+        add_header        Cache-Control must-revalidate;
+        expires           7d;
+    }
+
+    location  / {
+        deny all;
+    }
+}

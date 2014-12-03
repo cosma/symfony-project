@@ -1,0 +1,27 @@
+source "https://supermarket.getchef.com"
+
+group :solo do
+    cookbook "apt"
+    cookbook "apt-periodic"
+    cookbook "avahi"
+    cookbook "ntp"
+    cookbook "memcached"
+    cookbook "nginx"
+    cookbook "php"
+    cookbook "composer"
+    cookbook "mysql"
+    cookbook "database"
+    cookbook "java"
+    cookbook "elasticsearch"
+
+##
+#       Application specific role cookbooks
+##
+    cookbook "default",         path: "./cookbooks/default"
+    cookbook "costore",         path: "./cookbooks/costore"
+    cookbook "app",             path: "./cookbooks/app"
+    cookbook "db",              path: "./cookbooks/db"
+    cookbook "search",          path: "./cookbooks/search"
+    cookbook "media",           path: "./cookbooks/media"
+    cookbook "balancer",        path: "./cookbooks/balancer"
+end
