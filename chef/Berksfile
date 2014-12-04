@@ -4,12 +4,12 @@ group :solo do
     cookbook "apt"
     cookbook "apt-periodic"
     cookbook "ntp"
+    cookbook "avahi"
     cookbook "nginx"
     cookbook "php"
     cookbook "composer"
     cookbook "mysql"
     cookbook "database"
-    cookbook "avahi"
 
 
 ##
