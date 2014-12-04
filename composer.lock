@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7a80de434acb1f2d2b656ff69848f2b0",
+    "hash": "d9c51072b7211f8232020c3c884b5560",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1377,16 +1377,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "2.6.x-dev",
+            "version": "v2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "0999ea74b7f5ab8019866aa2994ca35903010b2b"
+                "reference": "d805dfd67950848ec0338b4acd75777b340977b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/0999ea74b7f5ab8019866aa2994ca35903010b2b",
-                "reference": "0999ea74b7f5ab8019866aa2994ca35903010b2b",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/d805dfd67950848ec0338b4acd75777b340977b7",
+                "reference": "d805dfd67950848ec0338b4acd75777b340977b7",
                 "shasum": ""
             },
             "require": {
@@ -1489,7 +1489,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-12-03 10:02:59"
+            "time": "2014-12-03 16:40:43"
         },
         {
             "name": "twig/extensions",
@@ -1604,17 +1604,17 @@
     "packages-dev": [
         {
             "name": "sensio/generator-bundle",
-            "version": "v2.4.2",
+            "version": "v2.4.3",
             "target-dir": "Sensio/Bundle/GeneratorBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "29e6fff09198f98196e6223fc78bf0c70a89ffac"
+                "reference": "2e2d8096a65cfec2658bd3f21e506fa1058b962e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/29e6fff09198f98196e6223fc78bf0c70a89ffac",
-                "reference": "29e6fff09198f98196e6223fc78bf0c70a89ffac",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/2e2d8096a65cfec2658bd3f21e506fa1058b962e",
+                "reference": "2e2d8096a65cfec2658bd3f21e506fa1058b962e",
                 "shasum": ""
             },
             "require": {
@@ -1648,14 +1648,12 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2014-11-29 10:12:05"
+            "time": "2014-12-04 05:46:34"
         }
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "symfony/symfony": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "platform": {
         "php": ">=5.3.3"

@@ -97,7 +97,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #nodeConfig.vm.synced_folder ".", "/vagrant", :id => "vagrant-root" , nfs: true
     ##, :group => "www-data", :mount_options => ["dmode=775", "fmode=764"] #
 
-    config.vm.synced_folder ".", "/vagrant", type: "rsync",
+    config.vm.synced_folder ".", "/vagrant",
+        type: "rsync",
+        rsync__auto: true,
         rsync__exclude: [
         ".git",
         ".idea",
@@ -109,8 +111,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         "vendor",
         "web/assets",
         "web/bundles"
-        ],
-        rsync__auto: true
+        ]
 
     config.vm.synced_folder "./vendor", "/vagrant/vendor"
 
