@@ -3,6 +3,7 @@ DEPENDENCIES
     path: cookbooks/app
   apt
   apt-periodic
+  avahi
   composer
   database
   db
@@ -25,6 +26,7 @@ GRAPH
   apt (2.6.0)
   apt-periodic (0.2.0)
     apt (>= 0.0.0)
+  avahi (1.0.2)
   aws (2.5.0)
   bluepill (2.3.1)
     rsyslog (>= 0.0.0)
@@ -47,6 +49,7 @@ GRAPH
   default (1.0.0)
     apt (>= 0.0.0)
     apt-periodic (>= 0.0.0)
+    avahi (>= 0.0.0)
     git (>= 0.0.0)
     ntp (>= 0.0.0)
   dmg (2.2.2)

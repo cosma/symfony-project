@@ -9,6 +9,8 @@ group :solo do
     cookbook "composer"
     cookbook "mysql"
     cookbook "database"
+    cookbook "avahi"
+
 
 ##
 #       Application specific role cookbooks

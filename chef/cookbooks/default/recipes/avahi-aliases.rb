@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: default
-# Recipe:: default
+# Recipe:: avahi-aliases
 #
 # Author::  Cosmin Voicu(<cosmin.voicu@gmail.com>)
 # Copyright::  2013, Cosmin Voicu
@@ -18,28 +18,33 @@
 # limitations under the License.
 #
 
-# default receipes for executing on every node
-include_recipe "apt"
+# install avahi aliasses for multiple domains and subdomains a python workaround
 
-# automatically updates   #include_recipe "default::auto-updates"
-include_recipe "apt-periodic"
-
-# set time zone
-include_recipe "default::timezone"
-
-
-include_recipe "ntp"
-
-# install  domain
-include_recipe "avahi"
-# install domain aliases only if domain_aliases is set
-unless node[:domain_aliases].nil?
-    include_recipe "default::avahi-aliases" unless node[:domain_aliases].empty?
-end
+include_recipe "git"
 
 # install some packages for development scope
-%w{mc htop ncdu mtr grc tmux zsh sysv-rc-conf}.each do |pkg|
+%w{python-pip python-avahi}.each do |pkg|
     package pkg do
         action :install
     end
+end
+
+execute "install avahi-aliases" do
+  command "pip install  git+git://github.com/airtonix/avahi-aliases.git"
+end
+
+execute "avahi-aliases" do
+  command "avahi-alias start"
+  action :nothing
+end
+
+template "/etc/avahi/aliases.d/default" do
+    source "etc/avahi/aliases.d/default.erb"
+    mode   "0644"
+    owner  "root"
+    group  "root"
+    variables(
+        :domain_aliases => node[:domain_aliases]
+    )
+    notifies :run, "execute[avahi-aliases]"
 end
