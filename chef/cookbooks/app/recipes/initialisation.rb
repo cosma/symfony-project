@@ -21,6 +21,22 @@
 include_recipe "composer"
 include_recipe "composer::self_update"
 
+# directory "/vagrant/app/cache" do
+#   owner 'vagrant'
+#   group 'vagrant'
+#   mode '0777'
+#   action :create
+#   recursive true
+# end
+#
+# directory "/vagrant/app/logs" do
+#   owner 'vagrant'
+#   group 'vagrant'
+#   mode '0777'
+#   action :create
+#   recursive true
+# end
+
 bash "install composer Symfony" do
     user "vagrant"
     group "vagrant"
@@ -30,3 +46,4 @@ bash "install composer Symfony" do
         EOH
     environment ({'HOME' => '/home/vagrant'})
 end
+

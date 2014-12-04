@@ -81,7 +81,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # set node specific Virtual Box settings
     config.vm.provider :virtualbox do |vb|
-        vb.name = "symfony"
         vb.customize [
                   "modifyvm", :id,
                   "--description", "Symfony Standard Project",
@@ -94,26 +93,26 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # NFS shared folders required nfs to be installed on host machine:
     #  $apt-get install nfs-kernel-server
     ##
-    #nodeConfig.vm.synced_folder ".", "/vagrant", :id => "vagrant-root" , nfs: true
+    config.vm.synced_folder ".", "/vagrant", :id => "vagrant-root" , nfs: true
     ##, :group => "www-data", :mount_options => ["dmode=775", "fmode=764"] #
 
-    config.vm.synced_folder ".", "/vagrant",
-        type: "rsync",
-        rsync__auto: true,
-        rsync__exclude: [
-        ".git",
-        ".idea",
-        ".sass-cache",
-        "app/cache",
-        "app/config/parameters.yml",
-        "app/logs",
-        "node_modules",
-        "vendor",
-        "web/assets",
-        "web/bundles"
-        ]
-
-    config.vm.synced_folder "./vendor", "/vagrant/vendor"
+#     config.vm.synced_folder ".", "/vagrant",
+#         type: "rsync",
+#         rsync__exclude: [
+#         ".git",
+#         ".idea",
+#         ".sass-cache",
+#         "app/cache",
+#         "app/bootstrap.php.cache",
+#         "app/config/parameters.yml",
+#         "app/logs",
+#         "node_modules",
+#         "vendor",
+#         "web/assets",
+#         "web/bundles"
+#         ]
+#
+#     config.vm.synced_folder "./vendor", "/vagrant/vendor"
 
     ##
     # Enable provisioning with chef solo, specifying a cookbooks path, roles
