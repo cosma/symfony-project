@@ -1,4 +1,4 @@
-name "costore"
+name "symfony"
 description "Role for installing and configuring everything on one server."
 
 default_attributes({})

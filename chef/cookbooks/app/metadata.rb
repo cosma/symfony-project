@@ -14,9 +14,6 @@ end
 
 depends "default"
 
-depends "memcached"
 depends "nginx"
 depends "php"
-depends "java"
-depends "hipsnip-jetty"
-depends "hipsnip-solr"
+depends "composer"

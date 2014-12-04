@@ -6,7 +6,6 @@ Contains:
 * apt       - auto updates
 * timezone  - default configuration
 * locales   - default configuration
-* avahi     - domain aliases
 * dev tools - git, mc, htop, ncdu, mtr, grc, tmux, zsh
 
 ----------------------------------------------------

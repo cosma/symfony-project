@@ -23,21 +23,6 @@ end
 ##
 
 
-
-##
-# Available nodes.
-##
-availableNodes = [
-
-    #   All-Inn server
-    {
-        :name => "symfony",
-        :description => "Costore Server - all software installed: App, PHP, Nginx, Mysql",
-        :ip => '192.168.50.10',
-        :memory => 2048
-        }
-]
-
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
@@ -74,85 +59,75 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ##
     config.omnibus.chef_version = :latest
 
-    # iterates over available nodes and set specific node configuration
-    availableNodes.each do |node|
+    config.vm.define 'symfony'
 
-        # define a node
-        config.vm.define node[:name], primary: ( node[:name] == 'costore' ? true : false ) do |nodeConfig|
+    ##
+    # set update Guest Adition true/false
+    ##
+    config.vbguest.auto_update = true
 
-            ##
-            # set update Guest Adition true/false
-            ##
-            nodeConfig.vbguest.auto_update = true
+    # uncomment line below if you wanna enable cache per machine
+    config.cache.scope = :machine
 
-            # uncomment line below if you wanna enable cache per machine
-            nodeConfig.cache.scope = :machine
+    # Set the hostname
+    config.vm.host_name = 'symfony'
 
-            # Set the hostname
-            nodeConfig.vm.host_name = node[:name]
-
-            ##
-            # Create a private network, which allows host-only access to the machine
-            # using a specific IP.
-            ##
-            nodeConfig.vm.network :private_network, ip: node[:ip]
+    ##
+    # Create a private network, which allows host-only access to the machine
+    # using a specific IP.
+    ##
+    config.vm.network :private_network, ip: '192.168.10.10'
 
 
-            # set node specific Virtual Box settings
-            nodeConfig.vm.provider :virtualbox do |vb|
-                vb.customize [
-                          "modifyvm", :id,
-                          "--description", "#{node[:description]}",
-                          "--memory", node[:memory]
-                ]
-            end
-
-            ##
-            # mount project folder  only for application nodes: app & media folder  only for media server node: media
-            # NFS shared folders required nfs to be installed on host machine:
-            #  $apt-get install nfs-kernel-server
-            ##
-            case node[:name]
-                when "costore", "app", "media"
-                    #nodeConfig.vm.synced_folder ".", "/vagrant", :id => "vagrant-root" , nfs: true
-                    ##, :group => "www-data", :mount_options => ["dmode=775", "fmode=764"] #
-
-                    nodeConfig.vm.synced_folder ".", "/vagrant", type: "rsync",
-                    rsync__exclude: [
-                    ".git",
-                    ".idea",
-                    ".sass-cache",
-                    "app/cache",
-                    "app/config/parameters.yml",
-                    "app/logs",
-                    "node_modules",
-                    "vendor",
-                    "web/assets",
-                    "web/bundles"
-                    ],
-                    rsync__auto: true
-
-                    nodeConfig.vm.synced_folder "./vendor", "/vagrant/vendor"
-
-                else
-                    nodeConfig.vm.synced_folder ".", "/vagrant", :disabled => true
-            end
-
-            ##
-            # Enable provisioning with chef solo, specifying a cookbooks path, roles
-            # path, and data_bags path (all relative to this Vagrantfile), and adding
-            # some recipes and/or roles.
-            ##
-             nodeConfig.vm.provision :chef_solo do |chef|
-                 chef.cookbooks_path = ["./chef/cookbooks"]
-                 chef.roles_path = "./chef/roles"
-                 chef.data_bags_path = "./chef/data_bags/development"
-                 chef.add_role node[:name]
-                 chef.log_level = :debug # uncomment this for more debug info
-             end
-
-        end
+    # set node specific Virtual Box settings
+    config.vm.provider :virtualbox do |vb|
+        vb.name = "symfony"
+        vb.customize [
+                  "modifyvm", :id,
+                  "--description", "Symfony Standard Project",
+                  "--memory", 2048
+        ]
     end
+
+    ##
+    # mount project folder  only for application nodes: app & media folder  only for media server node: media
+    # NFS shared folders required nfs to be installed on host machine:
+    #  $apt-get install nfs-kernel-server
+    ##
+    #nodeConfig.vm.synced_folder ".", "/vagrant", :id => "vagrant-root" , nfs: true
+    ##, :group => "www-data", :mount_options => ["dmode=775", "fmode=764"] #
+
+    config.vm.synced_folder ".", "/vagrant", type: "rsync",
+        rsync__exclude: [
+        ".git",
+        ".idea",
+        ".sass-cache",
+        "app/cache",
+        "app/config/parameters.yml",
+        "app/logs",
+        "node_modules",
+        "vendor",
+        "web/assets",
+        "web/bundles"
+        ],
+        rsync__auto: true
+
+    config.vm.synced_folder "./vendor", "/vagrant/vendor"
+
+    ##
+    # Enable provisioning with chef solo, specifying a cookbooks path, roles
+    # path, and data_bags path (all relative to this Vagrantfile), and adding
+    # some recipes and/or roles.
+    ##
+     config.vm.provision :chef_solo do |chef|
+         chef.cookbooks_path = ["./chef/cookbooks"]
+         chef.roles_path = "./chef/roles"
+         chef.data_bags_path = "./chef/data_bags/development"
+         chef.add_role 'symfony'
+         chef.log_level = :debug # uncomment this for more debug info
+     end
+
+
 
 end
 

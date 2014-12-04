@@ -18,9 +18,6 @@
 # limitations under the License.
 #
 
-# memcached cache manager
-include_recipe "memcached"
-
 # php server
 include_recipe "app::php"
 

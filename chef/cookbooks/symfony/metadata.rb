@@ -1,4 +1,4 @@
-name              'costore'
+name              'symfony'
 maintainer        "Cosmin Voicu"
 maintainer_email  "cosmin.voicu@gmail.com"
 license           "Apache 2.0"

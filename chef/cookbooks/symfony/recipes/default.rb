@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: costore
+# Cookbook Name:: symfony
 # Recipe:: default
 #
 # Author::  Cosmin Voicu(<cosmin.voicu@gmail.com>)

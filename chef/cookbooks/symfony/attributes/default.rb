@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: costore
+# Cookbook Name:: symfony
 # Attributes:: default
 #
 # Author::  Cosmin Voicu(<cosmin.voicu@gmail.com>)
@@ -17,8 +17,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-# allin attributes
-default[:domain_aliases] = ["media.costore.local"]
-default[:media][:domain] =  "media.costore.local"
 

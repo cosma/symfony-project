@@ -25,7 +25,7 @@ Can and should have multiple instances, especially for a replication purpose.
 Just define another machine with  "role[db]"
 
 Used only in  "network" environment and is part of a small local network along with the other servers:
-"app", "balancer", "media", "solrserver".
+"app".
 
 For bringing this server up:
 

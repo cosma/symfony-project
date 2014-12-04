@@ -26,6 +26,7 @@ default[:composer][:install_globally] = true
 default[:composer][:mask] = 0777
 default[:composer][:link_type] = :hard
 default[:composer][:global_configs] = { 'vagrant' => nil }
+default[:composer][:home_dir] = '/home/vagrant'
 
 
 

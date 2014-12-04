@@ -23,16 +23,6 @@
 default[:app][:port] = 80;
 default[:app][:root_directory] = "/vagrant/web"
 
-# memcached attributes
-default[:memcached][:memory] = 128
-default[:memcached][:port] = 11211
-default[:memcached][:listen] = "0.0.0.0"
-default[:memcached][:maxconn] = 1024
-default[:memcached][:max_object_size] = "1m"
-default[:memcached][:logfilename] = "memcached.log"
-default[:memcached][:user] = "nobody"
-default[:memcached][:group] = "nogroup"
-
 # php attributes
 default[:php][:url]            = 'http://php.net/distributions'
 default[:php][:version]        = "5.5.6"

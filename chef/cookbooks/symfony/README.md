@@ -1,14 +1,11 @@
-costore - All in one server cookbook
+symfony - All in one server cookbook
 ==================================
 
 Contains:
 
 * PHP           - application
 * Nginx         - webserver
-* Memcached     - cache handler
 * Mysql         - database
-* Elasticsearch -
-* Media         - media files
 
 ----------------------------------------------------
 Environments:
@@ -21,7 +18,7 @@ Server Role Cookbooks:
 * default
 * app
 * db
-* costore
+* symfony
 
 Description
 ------------
@@ -33,7 +30,7 @@ In "development" environment you only need to use this server.
 
 For bringing this server up:
 
-    $ vagrant up costore
+    $ vagrant up symfony
 
 
 
