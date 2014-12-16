@@ -19,13 +19,13 @@
 #
 
 # db attributes
-default[:db][:mysql][:databases] = ["costore", "costore_dev", "costore_test"]
+default[:db][:mysql][:databases] = ["symfony", "symfony_dev", "symfony_test"]
 
 # Define  mysql users and rights for application
 default[:db][:mysql][:users] = {
     :costore => {
         :privileges => [:all],
-        :databases => ["costore", "costore_dev", "costore_test"]
+        :databases => ["symfony", "symfony_dev", "symfony_test"]
     }
 }
 
