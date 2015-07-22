@@ -38,7 +38,7 @@ unless node[:domain_aliases].nil?
 end
 
 # install some packages for development scope
-%w{mc htop ncdu mtr grc tmux zsh sysv-rc-conf git subversion}.each do |pkg|
+%w{vim nano curl build-essential python-software-properties acl mc htop ncdu mtr grc tmux zsh sysv-rc-conf git subversion lynx apt-show-versions}.each do |pkg|
     package pkg do
         action :install
     end
