@@ -19,7 +19,7 @@ end
 
 ###
 #   Add the box from vagrant cloud
-#       vagrant box add chef/ubuntu-14.04"
+#        $ vagrant box add ubuntu/trusty64
 ##
 
 
@@ -30,7 +30,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ##
     # Every Vagrant virtual environment requires a box to build off of.
     ##
-    config.vm.box = "chef/ubuntu-14.04"
+    config.vm.box = "ubuntu/trusty64"
 
     ##
     # The url from where the 'config.vm.box' box will be fetched if it doesn't
@@ -43,31 +43,43 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ##
     config.vm.boot_timeout = 900
 
+
+    # Disable automatic box update checking. If you disable this, then
+    # boxes will only be checked for updates when the user runs
+    # `vagrant box outdated`. This is not recommended.
+    config.vm.box_check_update = true
+
     ##
     # Vagrant plugin 'vagrant-cachier' for caching downloaded data.
     ##
-    config.cache.auto_detect = false
+    if Vagrant.has_plugin?("vagrant-cachier")
+        config.cache.scope = :machine
+        config.cache.auto_detect = false
+    end
 
     ##
     # Vagrant plugin 'vagrant-berkshelf' for cookbook dependency management.
     ##
-    config.berkshelf.enabled = true
-    config.berkshelf.berksfile_path = "./chef/Berksfile"
+    if Vagrant.has_plugin?("vagrant-berkshelf")
+        config.berkshelf.enabled = true
+        config.berkshelf.berksfile_path = "./chef/Berksfile"
+    end
 
     ##
     # Vagrant plugin 'vagrant-omnibus' to update chef-solo to the latest version.
     ##
-    config.omnibus.chef_version = :latest
-
-    config.vm.define 'symfony'
+    if Vagrant.has_plugin?("vagrant-omnibus")
+        config.omnibus.chef_version = :latest
+    end
 
     ##
     # set update Guest Adition true/false
     ##
-    config.vbguest.auto_update = true
+    if Vagrant.has_plugin?("vagrant-vbguest")
+        config.vbguest.auto_update = true
+    end
 
-    # uncomment line below if you wanna enable cache per machine
-    config.cache.scope = :machine
+    config.vm.define 'symfony'
 
     # Set the hostname
     config.vm.host_name = 'symfony'

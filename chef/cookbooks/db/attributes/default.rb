@@ -19,30 +19,32 @@
 #
 
 # db attributes
-default[:db][:mysql][:databases] = ["symfony", "symfony_dev", "symfony_test"]
+default[:db][:databases] = ["symfony", "symfony_dev", "symfony_test"]
+
+default[:db][:encoding] = "utf8"
+default[:db][:collation] = "utf8_general_ci"
 
 # Define  mysql users and rights for application
-default[:db][:mysql][:users] = {
-    :costore => {
+default[:db][:users] = {
+    :symfony => {
         :privileges => [:all],
         :databases => ["symfony", "symfony_dev", "symfony_test"]
     }
 }
 
-# mysql attributes
+#  mysql attributes
+default[:mysql][:version] = "5.6"
+default[:mysql][:port] = "3306"
 default[:mysql][:bind_address] = "0.0.0.0"
-default[:mysql][:allow_remote_root] = true
-default[:mysql][:remove_anonymous_users] = true
-default[:mysql][:remove_test_database] = true
 
 # Set passwords for default mysql users
-mysql_user = Chef::DataBagItem.load("mysql_users", "debian")
-default[:mysql][:server_debian_password] = mysql_user["password"]
+db_user = Chef::DataBagItem.load("db_users", "debian")
+default[:mysql][:server_debian_password] = db_user["password"]
 
-mysql_user = Chef::DataBagItem.load("mysql_users", "root")
-default[:mysql][:server_root_password] = mysql_user["password"]
+db_user = Chef::DataBagItem.load("db_users", "root")
+default[:mysql][:server_root_password] = db_user["password"]
 
-mysql_user = Chef::DataBagItem.load("mysql_users", "repl")
-default[:mysql][:server_repl_password] = mysql_user["password"]
+db_user = Chef::DataBagItem.load("db_users", "repl")
+default[:mysql][:server_repl_password] = db_user["password"]
 
 

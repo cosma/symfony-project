@@ -18,32 +18,44 @@
 # limitations under the License.
 #
 
-include_recipe "mysql::server"
-include_recipe "database::mysql"
+
+mysql_service 'default' do
+    bind_address node[:mysql][:bind_address]
+    port node[:mysql][:port]
+    version node[:mysql][:version]
+    initial_root_password node[:mysql][:server_root_password]
+    action [:create, :start]
+end
+
+mysql2_chef_gem 'default' do
+    gem_version '0.3.17'
+    provider Chef::Provider::Mysql2ChefGem::Mysql
+    action :install
+end
 
 # create connection info as an external ruby hash
-mysql_connection_info = {
+db_connection_credentials = {
     :host => "127.0.0.1",
     :username => "root",
     :password => node[:mysql][:server_root_password]
 }
 
-#user_shop = Chef::DataBagItem.load("mysql_users", "costore")
-
 # create mysql databases
-node[:db][:mysql][:databases].each do |database|
+node[:db][:databases].each do |database|
   mysql_database "#{database}" do
-    connection mysql_connection_info
+    connection db_connection_credentials
+    encoding node[:db][:encoding]
+    collation node[:db][:collation]
     action :create
   end
 end
 
 # create mysql users and grant privileges
-node[:db][:mysql][:users].each do |user_name, user|
-  user_item = Chef::DataBagItem.load("mysql_users", "#{user_name}")
+node[:db][:users].each do |user_name, user|
+  user_item = Chef::DataBagItem.load("db_users", "#{user_name}")
 
   mysql_database_user "#{user_name}" do
-    connection mysql_connection_info
+    connection db_connection_credentials
     password user_item["password"]
     host "%"
     action :create
@@ -51,7 +63,7 @@ node[:db][:mysql][:users].each do |user_name, user|
 
   user[:databases].each do |database_name|
     mysql_database_user "#{user_name}" do
-      connection mysql_connection_info
+      connection db_connection_credentials
       privileges user[:privileges]
       database_name "#{database_name}"
       host "%"
@@ -60,6 +72,6 @@ node[:db][:mysql][:users].each do |user_name, user|
   end
 end
 
-service "mysql" do
+service "mysql-default" do
     action :restart
 end

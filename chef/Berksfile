@@ -1,15 +1,16 @@
 source "https://supermarket.getchef.com"
 
 group :solo do
-    cookbook "apt"
-    cookbook "apt-periodic"
-    cookbook "ntp"
-    cookbook "avahi"
-    cookbook "nginx"
-    cookbook "php"
-    cookbook "composer"
-    cookbook "mysql"
-    cookbook "database"
+    cookbook "apt"  , '= 2.7.0'
+    cookbook "apt-periodic" , '= 0.2.0'
+    cookbook "ntp" , '= 1.8.2'
+    cookbook "avahi", '= 1.0.2'
+    cookbook "nginx" , '= 2.7.6'
+    cookbook "php" , '= 1.5.0'
+    cookbook "composer" , '= 2.0.0'
+    cookbook "mysql" , '= 6.0.22'
+    cookbook "mysql2_chef_gem" , '= 1.0.1'
+    cookbook "database" , '= 4.0.6'
 
 
 ##
