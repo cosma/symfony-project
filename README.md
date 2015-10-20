@@ -53,15 +53,15 @@ If you get any warnings or recommendations, fix them before moving on.
 
 
 
-3) Vagrant & Chef provisioning
--------------------------------------
+3) Docker
+----------
 
-1) Download and install latest version of [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+1) Download and install latest version of [Docker Toolbox](https://www.docker.com/toolbox)
 
 2) Download and install latest version of [Vagrant](https://www.vagrantup.com/downloads.html)
  
 3) Download the vagrant box. Run in console:
-    `vagrant box add  ubuntu/trusty64`
+    `docker-compose up`
     
 4) Download and install latest version of [Chef DK](https://downloads.chef.io/chef-dk/)
     
