@@ -4,18 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "69ea610c15570dfd2413735652ac03a4",
+    "hash": "b98799514b1b4f3de083c8629df017ad",
     "packages": [
-        {
-            "name": "cosma/testing-bundle",
-            "version": "1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cosma/testing-bundle.git",
-                "reference": "1.2"
-            },
-            "type": "library"
-        },
         {
             "name": "doctrine/annotations",
             "version": "v1.2.7",
@@ -1656,6 +1646,16 @@
     ],
     "packages-dev": [
         {
+            "name": "cosma/testing-bundle",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cosma/testing-bundle.git",
+                "reference": "1.2"
+            },
+            "type": "library"
+        },
+        {
             "name": "sensio/generator-bundle",
             "version": "v2.5.3",
             "target-dir": "Sensio/Bundle/GeneratorBundle",
@@ -1706,9 +1706,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "cosma/testing-bundle": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

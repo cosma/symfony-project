@@ -8,7 +8,6 @@
             "": "src/"
         }
     },
-    "minimum-stability": "stable",
     "require": {
         "php": ">=5.3.9",
         "symfony/symfony": "2.7.*",
@@ -19,11 +18,11 @@
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~4.0",
         "sensio/framework-extra-bundle": "^3.0.2",
-        "incenteev/composer-parameter-handler": "~2.0",
-        "cosma/testing-bundle": "1.2.*@dev"
+        "incenteev/composer-parameter-handler": "~2.0"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3"
+        "sensio/generator-bundle": "~2.3",
+        "cosma/testing-bundle": "1.2.*@dev"
     },
     "repositories": [
         {
