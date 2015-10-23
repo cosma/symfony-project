@@ -1,4 +1,4 @@
-FROM ubuntu:wily
+FROM ubuntu:vivid
 
 MAINTAINER Cosmin Voicu <cosmin.voicu@gmail.com>
 
@@ -24,7 +24,7 @@ RUN apt-get install -y \
 	curl \
 	--no-install-recommends
 
-RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 ADD symfony.ini /etc/php5/fpm/conf.d/
 ADD symfony.ini /etc/php5/cli/conf.d/
