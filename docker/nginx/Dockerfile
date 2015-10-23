@@ -1,4 +1,4 @@
-FROM ubuntu:wily
+FROM ubuntu:vivid
 
 MAINTAINER Cosmin Voicu <cosmin.voicu@gmail.com>
 
