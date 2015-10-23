@@ -13,9 +13,22 @@
 class SimpleTestCaseTest extends \Cosma\Bundle\TestingBundle\TestCase\SimpleTestCase
 {
 
-    public function testSomething(){
-        $this->getEntityWithId('Asd');
+    public function testGetEntityWithId(){
+        /** @type \AppBundle\Entity\Book $book */
+        $book = $this->getEntityWithId('\AppBundle\Entity\Book', 3);
 
+        $this->assertInstanceOf('\AppBundle\Entity\Book', $book);
+
+        $this->assertEquals(3, $book->getId());
+    }
+
+    public function testGetMockedEntityWithId(){
+        /** @type \AppBundle\Entity\Book $book */
+        $book = $this->getMockedEntityWithId('\AppBundle\Entity\Book', 3);
+
+        $this->assertInstanceOf('\AppBundle\Entity\Book', $book);
+
+        $this->assertEquals(3, $book->getId());
     }
     
 }
