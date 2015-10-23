@@ -1,6 +1,6 @@
-FROM debian:jessie
+FROM ubuntu:wily
 
-MAINTAINER Vincent Composieux <vincent.composieux@gmail.com>
+MAINTAINER Cosmin Voicu <cosmin.voicu@gmail.com>
 
 RUN apt-get update && apt-get install -y nginx
 

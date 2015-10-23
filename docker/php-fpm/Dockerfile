@@ -1,6 +1,6 @@
-FROM debian:jessie
+FROM ubuntu:wily
 
-MAINTAINER Vincent Composieux <vincent.composieux@gmail.com>
+MAINTAINER Cosmin Voicu <cosmin.voicu@gmail.com>
 
 RUN apt-get update && apt-get install -y \
 	php5-dev \
@@ -19,6 +19,12 @@ RUN apt-get update && apt-get install -y \
 	php5-imagick \
 	php-pear \
 	--no-install-recommends
+
+RUN apt-get install -y \
+	curl \
+	--no-install-recommends
+
+RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 
 ADD symfony.ini /etc/php5/fpm/conf.d/
 ADD symfony.ini /etc/php5/cli/conf.d/
