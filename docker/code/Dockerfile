@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM ubuntu:wily
 
 MAINTAINER Cosmin Voicu <cosmin.voicu@gmail.com>
 
