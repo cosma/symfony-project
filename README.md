@@ -79,3 +79,4 @@ If you get any warnings or recommendations, fix them before moving on.
 access the application from host on `symfony.local`
 
 
+
