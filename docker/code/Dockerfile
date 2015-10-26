@@ -42,10 +42,6 @@ RUN apt-get update && apt-get install -y \
     subversion \
 	--no-install-recommends
 
-# Install Composer
-RUN wget --quiet https://getcomposer.org/composer.phar -O /usr/local/bin/composer
-RUN chmod +x /usr/local/bin/composer
-
 VOLUME /var/www/symfony
 
 
