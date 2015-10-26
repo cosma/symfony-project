@@ -24,7 +24,7 @@ RUN apt-get install -y \
 	curl \
 	--no-install-recommends
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS http://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 ADD symfony.ini /etc/php5/fpm/conf.d/
 ADD symfony.ini /etc/php5/cli/conf.d/
@@ -32,6 +32,7 @@ ADD symfony.ini /etc/php5/cli/conf.d/
 ADD symfony.pool.conf /etc/php5/fpm/pool.d/
 
 RUN usermod -u 1000 www-data
+
 
 CMD ["php5-fpm", "-F"]
 
