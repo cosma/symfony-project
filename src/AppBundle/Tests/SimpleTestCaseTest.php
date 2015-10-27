@@ -30,5 +30,13 @@ class SimpleTestCaseTest extends \Cosma\Bundle\TestingBundle\TestCase\SimpleTest
 
         $this->assertEquals(3, $book->getId());
     }
+
+    public function testGetTestClassPath(){
+
+        $testClass = $this->getTestClassPath();
+
+        $this->assertEquals('AppBundle/Tests/SimpleTestCaseTest', $testClass);
+
+    }
     
 }
