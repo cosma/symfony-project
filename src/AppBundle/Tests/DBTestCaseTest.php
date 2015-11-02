@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of the symfony-project project
  *
@@ -11,8 +10,16 @@
  * Date: 23/10/15
  * Time: 08:11
  */
-class WebTestCase extends \Cosma\Bundle\TestingBundle\TestCase\WebTestCase
+
+namespace AppBundle\Tests;
+
+use Cosma\Bundle\TestingBundle\TestCase\DBTestCase;
+
+class DBTestCaseTest extends DBTestCase
 {
+    public function setUp(){
+
+    }
 
     public function testGetEntityWithId(){
         /** @type \AppBundle\Entity\Book $book */
@@ -35,7 +42,5 @@ class WebTestCase extends \Cosma\Bundle\TestingBundle\TestCase\WebTestCase
     public function testSomething(){
         $client = $this->getClient();
         $this->assertInstanceOf('\Symfony\Bundle\FrameworkBundle\Client', $client);
-
     }
-    
 }

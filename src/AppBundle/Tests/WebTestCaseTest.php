@@ -1,20 +1,21 @@
 <?php
-
 /**
- * This file is part of the symfony-project project.
+ * This file is part of the symfony-project project
  *
- * @project    symfony-project
- * @author     Cosmin Voicu <cosmin.voicu@oconotech.com>
- * @copyright  2015 - ocono Tech GmbH
- * @license    http://www.ocono-tech.com proprietary
- * @link       http://www.ocono-tech.com
- * @date       22/10/15
+ * (c) Cosmin Voicu<cosmin.voicu@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * Date: 23/10/15
+ * Time: 08:11
  */
+
 namespace AppBundle\Tests;
 
-use Cosma\Bundle\TestingBundle\TestCase\SimpleTestCase;
+use Cosma\Bundle\TestingBundle\TestCase\WebTestCase;
 
-class SimpleTestCaseTest extends SimpleTestCase
+class WebTestCaseTest extends WebTestCase
 {
     public function testGetEntityWithId(){
         /** @type \AppBundle\Entity\Book $book */
@@ -34,12 +35,8 @@ class SimpleTestCaseTest extends SimpleTestCase
         $this->assertEquals(3, $book->getId());
     }
 
-    public function testGetTestClassPath(){
-
-        $testClass = $this->getTestClassPath();
-
-        $this->assertEquals('AppBundle/Tests/SimpleTestCaseTest', $testClass);
-
+    public function testSomething(){
+        $client = $this->getClient();
+        $this->assertInstanceOf('\Symfony\Bundle\FrameworkBundle\Client', $client);
     }
-    
 }
