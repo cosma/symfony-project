@@ -1,0 +1,8 @@
+parameters:
+
+services:
+  app_bundle.world_greeter:
+    class: AppBundle\Service\HelloWorldService
+    arguments:
+        - @=service('doctrine').getManager()
+        - @logger

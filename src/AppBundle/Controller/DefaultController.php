@@ -2,42 +2,94 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Product;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use AppBundle\Entity\World;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-        ));
+        return $this->render('default/index.html.twig', [
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir') . '/..'),
+        ]);
     }
 
     /**
-     * @Route("/create", name="create_product")
+     * @Route("/hello/{id}", name="homepage_hello")
+     *
+     * @ParamConverter("world", class="AppBundle:World")
      */
-
-    public function createAction()
+    public function helloAction(World $world)
     {
-        $product = new Product();
-        $product->setName('A Foo Bar');
-        $product->setPrice('19.99');
-        $product->setDescription('Lorem ipsum dolor');
+        $worldGreeterService = $this->get('app_bundle.world_greeter');
 
-        $em = $this->getDoctrine()->getManager();
-
-        $em->persist($product);
-        $em->flush();
-
-        return new Response('Created product id '.$product->getId());
+        return $this->render('default/default.html.twig', [
+            't' => $worldGreeterService->sayHelloToWorld($world)
+        ]);
     }
 
+    /**
+     * @Route("/helloback/{id}", name="homepage_hello_backwards")
+     *
+     * @ParamConverter("world", class="AppBundle:World")
+     */
+    public function helloBackwardsAction(World $world)
+    {
+        $worldGreeterService = $this->get('app_bundle.world_greeter');
+
+        $tmp =  $worldGreeterService->sayHelloToWorld($world);
+        $tmp2 = '';
+        for ($x = strlen($tmp); $x > 0; $x--) {
+            $tmp2 += $x;
+        }
+        return $this->render('default/default.html.twig', [
+            't' => $tmp2
+        ]);
+    }
+
+    /**
+     * @Route("/remove/{id}", name="homepage_remove_world")
+     *
+     * @ParamConverter("world", class="AppBundle:World")
+     *
+     */
+    public function removeWorldAction(World $world)
+    {
+        $worldGreeterService = $this->get('app_bundle.world_greeter');
+
+        return $this->render('default/default.html.twig', [
+            't' => $worldGreeterService->removeWorld($world)
+        ]);
+    }
+
+    /**
+     * @Route("/buildWorld", name="homepage_create_world")
+     */
+    public function createNewWorldAction(Request $request)
+    {
+        $manager = $this->get('doctrine')->getManager();
+        $count   = $request->get('c');
+        $id      = [];
+        for ($x = 0; $x < $count; $x++) {
+            $world       = new World();
+            $world->name = $request->get('name');
+            $manager->persist($world);
+            $manager->flush();
+            $id[] = $world->id;
+        }
+        $tmpStr = '';
+        foreach ($id as $tmp)
+            $tmpStr = $tmpStr . $tmp;
+
+        return $this->render('default/default.html.twig', [
+            't' => 'id: ' . $tmpStr
+        ]);
+    }
 }

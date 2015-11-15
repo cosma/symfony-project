@@ -1,14 +1,12 @@
 {
-    "name": "cosma/symfony-project",
-    "license": "MIT",
+    "name": "leberle/sf2-test",
+    "license": "proprietary",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution with docker",
     "autoload": {
         "psr-4": {
             "": "src/"
         }
     },
-    "minimum-stability": "stable",
     "require": {
         "php": ">=5.3.9",
         "symfony/symfony": "2.7.*",
@@ -54,4 +52,3 @@
         }
     }
 }
-
