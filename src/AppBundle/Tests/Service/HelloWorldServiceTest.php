@@ -1,15 +1,4 @@
 <?php
-/**
- * This file is part of the symfony-project project.
- *
- * @project    symfony-project
- * @author     Cosmin Voicu <cosmin.voicu@oconotech.com>
- * @copyright  2015 - ocono Tech GmbH
- * @license    http://www.ocono-tech.com proprietary
- * @link       http://www.ocono-tech.com
- * @date       15/11/15
- */
-
 namespace AppBundle\Tests\Service;
 
 use AppBundle\Entity\World;
@@ -114,7 +103,6 @@ class HelloWorldServiceTest extends SimpleTestCase
         $hello = $helloWorldService->sayHelloToWorld($world);
 
         $this->assertEquals('Hello World, Terra', $hello);
-
 
     }
     
