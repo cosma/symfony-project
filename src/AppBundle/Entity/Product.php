@@ -10,6 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Product
 {
     /**
+     * @var integer
+     *
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -17,22 +19,28 @@ class Product
     protected $id;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=100)
      */
     protected $name;
 
     /**
+     * @var float
+     *
      * @ORM\Column(type="decimal", scale=2)
      */
     protected $price;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="text")
      */
     protected $description;
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -40,7 +48,7 @@ class Product
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -48,11 +56,11 @@ class Product
     }
 
     /**
-     * @param mixed $name
+     * @param $name
      *
      * @return $this
      */
-    public function setName(mixed $name)
+    public function setName($name)
     {
         $this->name = $name;
 
@@ -60,7 +68,7 @@ class Product
     }
 
     /**
-     * @return mixed
+     * @return float
      */
     public function getPrice()
     {
@@ -68,11 +76,11 @@ class Product
     }
 
     /**
-     * @param mixed $price
+     * @param $price
      *
      * @return $this
      */
-    public function setPrice(mixed $price)
+    public function setPrice($price)
     {
         $this->price = $price;
 
@@ -80,7 +88,7 @@ class Product
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getDescription()
     {
@@ -88,11 +96,11 @@ class Product
     }
 
     /**
-     * @param mixed $description
+     * @param string $description
      *
      * @return $this
      */
-    public function setDescription(mixed $description)
+    public function setDescription($description)
     {
         $this->description = $description;
 
