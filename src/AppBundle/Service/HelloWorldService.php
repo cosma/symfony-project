@@ -22,7 +22,7 @@ class HelloWorldService
     /**
      * @type string
      */
-    private $mainString = "Hello World ";
+    private $mainString = "Hello World";
 
     /**
      * HelloWorldService constructor.
@@ -59,10 +59,13 @@ class HelloWorldService
         return $this->mainString;
     }
 
+    /**
+     * @param \AppBundle\Entity\World $world
+     *
+     * @return string
+     */
     public function sayHelloToWorld(World $world)
     {
-        return $this->sayHello() . $world->getName();
+        return $this->sayHello() . ', ' . $world->getName();
     }
 }
-
-?>
