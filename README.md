@@ -43,6 +43,6 @@ Composer will install Symfony and all its dependencies under the
 3) Run in console:
     `docker-compose up`
     
-Docker containers expose nginx on port 80 and kibana server on port 81.
+Docker containers expose Nginx on port 80, MySQL on port 3306 and  Kibana server on port 81.
 
 
