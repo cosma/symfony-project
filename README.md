@@ -8,11 +8,10 @@ This document contains information on how to download, install, and start
 using Symfony on Docker.
 
 # Table of Contents
-    - [Installing Symfony](#installing-symfony)
-    - [Docker](#docker)
+ - [Installing Symfony](#installing-symfony)
+ - [Docker](#docker)
 
 ## Installing Symfony
----------------------
 
 When it comes to installing the Symfony Standard Edition, you have the
 following options.
@@ -35,7 +34,6 @@ Composer will install Symfony and all its dependencies under the
 `path/to/install` directory.
 
 ## Docker
----------
 
 1) Download and install latest version of [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
  
