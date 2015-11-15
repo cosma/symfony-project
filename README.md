@@ -53,7 +53,7 @@ sf2-test
 Hello applicant! Have a look on this small application.
 The code is not really nice, please refactor & improve!
 
-- refactor the controller and the service
+- refactor the controller and the service 
 - Add a config entry "default_greeting_string" to the AppBundle configuration (not as a parameter).
 - write a unit-test for HelloWorldService (should run without accessing DB)
 - Feel free to comment your thoughts if you think the change is not self-explaining
