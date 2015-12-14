@@ -17,8 +17,24 @@ use Cosma\Bundle\TestingBundle\TestCase\DBTestCase;
 
 class DBTestCaseTest extends DBTestCase
 {
-    public function setUp(){
+//    public function setUp(){
+//        parent::setUp();
+//
+//    }
 
+    public function testClient(){
+        $client = $this->getClient();
+        $this->assertInstanceOf('\Symfony\Bundle\FrameworkBundle\Client', $client);
+    }
+
+    public function testContainer(){
+        $container = $this->getClient()->getContainer();
+        $this->assertInstanceOf('\Symfony\Component\DependencyInjection\ContainerInterface', $container);
+    }
+
+    public function testKernelService(){
+        $kernel = $this->getClient()->getContainer()->get("kernel");
+        $this->assertInstanceOf('\Symfony\Component\HttpKernel\KernelInterface', $kernel);
     }
 
     public function testGetEntityWithId(){
@@ -39,8 +55,13 @@ class DBTestCaseTest extends DBTestCase
         $this->assertEquals(3, $book->getId());
     }
 
-    public function testSomething(){
-        $client = $this->getClient();
-        $this->assertInstanceOf('\Symfony\Bundle\FrameworkBundle\Client', $client);
+    public function testGetEntityManager(){
+        $entityManager = $this->getEntityManager();
+        $this->assertInstanceOf('\Doctrine\ORM\EntityManager', $entityManager);
+    }
+
+    public function testGetEntityRepository(){
+        $entityRepository = $this->getEntityRepository('AppBundle:Book');
+        $this->assertInstanceOf('\Doctrine\ORM\EntityRepository', $entityRepository);
     }
 }

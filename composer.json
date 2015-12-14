@@ -7,6 +7,7 @@
         "psr-4": { "": "src/" },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
+    "minimum-stability": "stable",
     "require": {
         "php": ">=5.3.9",
         "symfony/symfony": "2.8.*",

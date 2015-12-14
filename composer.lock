@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b6183be147ad50a6bf62abe6ce8dcb10",
-    "content-hash": "2ef7863c97151dde035df341f5330cab",
+    "hash": "67602fff9734e51104439aade6967d50",
+    "content-hash": "eb1f568e531fe4ec33a218456e88c6c5",
     "packages": [
         {
             "name": "cosma/testing-bundle",
@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cosma/testing-bundle.git",
-                "reference": "26208f4e162e0a616859cd4f62a8d4ee9ceec36b"
+                "reference": "9fbf93ee89979c53f202dd3a9cd97b95097f1f4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cosma/testing-bundle/zipball/26208f4e162e0a616859cd4f62a8d4ee9ceec36b",
-                "reference": "26208f4e162e0a616859cd4f62a8d4ee9ceec36b",
+                "url": "https://api.github.com/repos/cosma/testing-bundle/zipball/9fbf93ee89979c53f202dd3a9cd97b95097f1f4d",
+                "reference": "9fbf93ee89979c53f202dd3a9cd97b95097f1f4d",
                 "shasum": ""
             },
             "require": {
@@ -26,7 +26,7 @@
                 "facebook/webdriver": "1.1.*",
                 "h4cc/alice-fixtures-bundle": "0.5.*",
                 "mockery/mockery": "0.9.*",
-                "php": ">=5.5.9",
+                "php": ">=5.3.9",
                 "phpunit/phpunit": "5.1.*",
                 "ruflin/elastica": "1.4.*",
                 "solarium/solarium": "3.4.*",
@@ -69,7 +69,7 @@
                 "selenium test",
                 "testing"
             ],
-            "time": "2015-12-14 22:02:00"
+            "time": "2015-12-14 22:45:16"
         },
         {
             "name": "doctrine/annotations",

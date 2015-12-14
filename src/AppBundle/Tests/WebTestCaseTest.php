@@ -17,6 +17,11 @@ use Cosma\Bundle\TestingBundle\TestCase\WebTestCase;
 
 class WebTestCaseTest extends WebTestCase
 {
+    public function testClient(){
+        $client = $this->getClient();
+        $this->assertInstanceOf('\Symfony\Bundle\FrameworkBundle\Client', $client);
+    }
+
     public function testContainer(){
         $container = $this->getClient()->getContainer();
         $this->assertInstanceOf('\Symfony\Component\DependencyInjection\ContainerInterface', $container);
@@ -43,10 +48,5 @@ class WebTestCaseTest extends WebTestCase
         $this->assertInstanceOf('\AppBundle\Entity\Book', $book);
 
         $this->assertEquals(3, $book->getId());
-    }
-
-    public function testSomething(){
-        $client = $this->getClient();
-        $this->assertInstanceOf('\Symfony\Bundle\FrameworkBundle\Client', $client);
     }
 }
