@@ -17,6 +17,16 @@ use Cosma\Bundle\TestingBundle\TestCase\WebTestCase;
 
 class WebTestCaseTest extends WebTestCase
 {
+    public function testContainer(){
+        $container = $this->getClient()->getContainer();
+        $this->assertInstanceOf('\Symfony\Component\DependencyInjection\ContainerInterface', $container);
+    }
+
+    public function testKernelService(){
+        $kernel = $this->getClient()->getContainer()->get("kernel");
+        $this->assertInstanceOf('\Symfony\Component\HttpKernel\KernelInterface', $kernel);
+    }
+
     public function testGetEntityWithId(){
         /** @type \AppBundle\Entity\Book $book */
         $book = $this->getEntityWithId('\AppBundle\Entity\Book', 3);
