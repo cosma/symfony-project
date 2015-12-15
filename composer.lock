@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cosma/testing-bundle.git",
-                "reference": "2839bd5cc590963c200f13e74cbd3238f0d1c489"
+                "reference": "d9e3ce00e116d82fd61fd49aa157a7d0028480be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cosma/testing-bundle/zipball/2839bd5cc590963c200f13e74cbd3238f0d1c489",
-                "reference": "2839bd5cc590963c200f13e74cbd3238f0d1c489",
+                "url": "https://api.github.com/repos/cosma/testing-bundle/zipball/d9e3ce00e116d82fd61fd49aa157a7d0028480be",
+                "reference": "d9e3ce00e116d82fd61fd49aa157a7d0028480be",
                 "shasum": ""
             },
             "require": {
@@ -69,7 +69,7 @@
                 "selenium test",
                 "testing"
             ],
-            "time": "2015-12-15 00:34:00"
+            "time": "2015-12-15 02:12:11"
         },
         {
             "name": "doctrine/annotations",
