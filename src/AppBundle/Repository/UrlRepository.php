@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Url;
+
 /**
  * UrlRepository
  *
@@ -10,4 +12,11 @@ namespace AppBundle\Repository;
  */
 class UrlRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function findByShortenUrl($urlr)
+    {
+        $this->findOneBy(
+            ['shortenUrl' => $url]
+        );
+    }
 }

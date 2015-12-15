@@ -13,9 +13,26 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\Url;
+use Symfony\Bundle\FrameworkBundle\Routing\Router;
 
 class UrlShortener
 {
+
+    /**
+     * @type string
+     */
+    private $domain;
+
+    /**
+     * @type Router
+     */
+    private $router;
+
+    public function __construct($domain, $router)
+    {
+        $this->domain = $domain;
+        $this->router = $router;
+    }
 
     /**
      * @param \AppBundle\Entity\Url $url
@@ -24,7 +41,22 @@ class UrlShortener
      */
     public function short(Url $url)
     {
+        $hash = $this->generateHash($url->getOriginalUrl());
+
+        $shortURL = $this->router->generate(
+            'redirect_url',
+            [
+                'url' => $hash
+            ]
+        );
+
+        $url->setShortenUrl($this->domain . $shortURL);
+
         return $url;
+    }
+
+    private function generateHash($string){
+        return hash('md5', $string);
     }
     
 }
