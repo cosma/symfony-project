@@ -22,22 +22,26 @@ class DBTestCaseTest extends DBTestCase
 //
 //    }
 
-    public function testClient(){
+    public function testClient()
+    {
         $client = $this->getClient();
         $this->assertInstanceOf('\Symfony\Bundle\FrameworkBundle\Client', $client);
     }
 
-    public function testContainer(){
+    public function testContainer()
+    {
         $container = $this->getClient()->getContainer();
         $this->assertInstanceOf('\Symfony\Component\DependencyInjection\ContainerInterface', $container);
     }
 
-    public function testKernelService(){
+    public function testKernelService()
+    {
         $kernel = $this->getClient()->getContainer()->get("kernel");
         $this->assertInstanceOf('\Symfony\Component\HttpKernel\KernelInterface', $kernel);
     }
 
-    public function testGetEntityWithId(){
+    public function testGetEntityWithId()
+    {
         /** @type \AppBundle\Entity\Book $book */
         $book = $this->getEntityWithId('\AppBundle\Entity\Book', 3);
 
@@ -46,7 +50,8 @@ class DBTestCaseTest extends DBTestCase
         $this->assertEquals(3, $book->getId());
     }
 
-    public function testGetMockedEntityWithId(){
+    public function testGetMockedEntityWithId()
+    {
         /** @type \AppBundle\Entity\Book $book */
         $book = $this->getMockedEntityWithId('\AppBundle\Entity\Book', 3);
 
@@ -55,13 +60,21 @@ class DBTestCaseTest extends DBTestCase
         $this->assertEquals(3, $book->getId());
     }
 
-    public function testGetEntityManager(){
+    public function testGetEntityManager()
+    {
         $entityManager = $this->getEntityManager();
         $this->assertInstanceOf('\Doctrine\ORM\EntityManager', $entityManager);
     }
 
-    public function testGetEntityRepository(){
+    public function testGetEntityRepository()
+    {
         $entityRepository = $this->getEntityRepository('AppBundle:Book');
         $this->assertInstanceOf('\Doctrine\ORM\EntityRepository', $entityRepository);
+    }
+
+    public function testLoadFixtures()
+    {
+        $fixtures = $this->loadFixtures(['AppBundle:Table:Book']);
+        //$this->assertInstanceOf('\Doctrine\ORM\EntityRepository', $entityRepository);
     }
 }

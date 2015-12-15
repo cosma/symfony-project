@@ -1,0 +1,5 @@
+AppBundle\Entity\Book:
+    book_{1..5}:
+        title: <sentence()>
+        price: <randomFloat()>
+        description: <realText()>
