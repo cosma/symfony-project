@@ -17,10 +17,12 @@ use Cosma\Bundle\TestingBundle\TestCase\DBTestCase;
 
 class DBTestCaseTest extends DBTestCase
 {
-//    public function setUp(){
-//        parent::setUp();
-//
-//    }
+
+    public function setUp(){
+        parent::setUp();
+        $this->dropDatabase();
+
+    }
 
     public function testClient()
     {
@@ -74,7 +76,12 @@ class DBTestCaseTest extends DBTestCase
 
     public function testLoadFixtures()
     {
+        $bookRepository = $this->getKernel()->getContainer()->get('doctrine')->getRepository('AppBundle:Book');
+
+        $this->assertEmpty($bookRepository->findAll());
+
         $fixtures = $this->loadFixtures(['AppBundle:Table:Book']);
-        //$this->assertInstanceOf('\Doctrine\ORM\EntityRepository', $entityRepository);
+
+        $this->assertCount(5, $bookRepository->findAll());
     }
 }
