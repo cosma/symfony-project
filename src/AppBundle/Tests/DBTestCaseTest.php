@@ -62,6 +62,16 @@ class DBTestCaseTest extends DBTestCase
         $this->assertEquals(3, $book->getId());
     }
 
+    public function testGetMockedEntityWithId_ShortName()
+    {
+        /** @type \AppBundle\Entity\Book $book */
+        $book = $this->getMockedEntityWithId('AppBundle:Book', 35);
+
+        $this->assertInstanceOf('\AppBundle\Entity\Book', $book);
+
+        $this->assertEquals(35, $book->getId());
+    }
+
     public function testGetEntityManager()
     {
         $entityManager = $this->getEntityManager();
