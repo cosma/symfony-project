@@ -14,29 +14,28 @@
 namespace AppBundle\Tests;
 
 use Cosma\Bundle\TestingBundle\TestCase\DBTestCase;
+use Cosma\Bundle\TestingBundle\TestCase\SolrTestCase;
 
-class DBTestCaseTest extends DBTestCase
+class SolrTestCaseTest extends SolrTestCase
 {
-
     public function setUp()
     {
         parent::setUp();
-        $this->dropDatabase();
     }
 
-    public function testKernel()
+    public function testGetKernel()
     {
         $kernel = $this->getKernel();
         $this->assertInstanceOf('\Symfony\Component\HttpKernel\KernelInterface', $kernel);
     }
 
-    public function testContainer()
+    public function testGetContainer()
     {
         $container = $this->getContainer();
         $this->assertInstanceOf('\Symfony\Component\DependencyInjection\ContainerInterface', $container);
     }
 
-    public function testClient()
+    public function testGetClient()
     {
         $client = $this->getClient();
         $this->assertInstanceOf('\Symfony\Bundle\FrameworkBundle\Client', $client);
@@ -72,26 +71,44 @@ class DBTestCaseTest extends DBTestCase
         $this->assertEquals(35, $book->getId());
     }
 
-    public function testGetEntityManager()
+    public function testSolr()
     {
-        $entityManager = $this->getEntityManager();
-        $this->assertInstanceOf('\Doctrine\ORM\EntityManager', $entityManager);
+        $solariumClient = $this->getSolariumClient();
+
+        /**
+         * get an update query instance
+         */
+        $update = $solariumClient->createUpdate();
+
+        /**
+         * first fixture document
+         */
+        $documentOne = $update->createDocument();
+        $documentOne->id = 123;
+        $documentOne->name = 'testdoc-1';
+        $documentOne->price = 364;
+
+        /**
+         * second fixture document
+         */
+        $documentTwo = $update->createDocument();
+        $documentTwo->id = 124;
+        $documentTwo->name = 'testdoc-2';
+        $documentTwo->price = 340;
+
+        /**
+         * add the documents and a commit command to the update query
+         */
+        $update->addDocuments([$documentOne, $documentTwo]);
+        $update->addCommit();
+
+        /**
+         * execute query
+         */
+        $solariumClient->update($update);
     }
 
-    public function testGetEntityRepository()
-    {
-        $entityRepository = $this->getEntityRepository('AppBundle:Book');
-        $this->assertInstanceOf('\Doctrine\ORM\EntityRepository', $entityRepository);
-    }
 
-    public function testLoadFixtures()
-    {
-        $bookRepository = $this->getKernel()->getContainer()->get('doctrine')->getRepository('AppBundle:Book');
 
-        $this->assertEmpty($bookRepository->findAll());
 
-        $fixtures = $this->loadFixtures(['AppBundle:Table:Book']);
-
-        $this->assertCount(5, $bookRepository->findAll());
-    }
 }
