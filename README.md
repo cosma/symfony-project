@@ -10,6 +10,7 @@ using Symfony on Docker.
 # Table of Contents
  - [Installing Symfony](#installing-symfony)
  - [Docker](#docker)
+ - [Tests](#tests)
 
 ## Installing Symfony
 
@@ -46,3 +47,7 @@ Composer will install Symfony and all its dependencies under the
 Docker containers expose Nginx on port 80, MySQL on port 3306 and  Kibana server on port 81.
 
 
+## Tests
+
+Run in console:
+    `bin/phpunit -c app/ --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml --coverage-text src/`
