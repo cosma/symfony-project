@@ -8,6 +8,13 @@ machine:
     UTC
   php:
     version: 5.6.14
+  services:
+      - redis
+      - mysql
+  environment:
+      JAVA_OPTIONS: "-Xms512m -Xmx1024m"
+      CIRCLE_ENV: test
+      DATABASE_URL: mysql://ubuntu:@127.0.0.1:3306/circle_test
 
 dependencies:
   pre:
@@ -15,6 +22,16 @@ dependencies:
 
   cache_directories:
     - "vendor"
+
+database:
+  pre:
+    - cp app/config/parameters.yml.ci app/config/parameters.yml
+  post:
+    - cp -R /opt/solr-4.3.1 $HOME/solr
+    - cp config/schema.xml $HOME/solr/example/solr/collection1/conf
+    # optional: - cp config/solrconfig.xml $HOME/solr/example/solr/collection1/conf
+    - cd $HOME/solr/example; java -jar start.jar >> $HOME/solr.log:
+        background: true
 
 test:
   override:

@@ -13,14 +13,15 @@
 
 namespace AppBundle\Tests;
 
-use Cosma\Bundle\TestingBundle\TestCase\DBTestCase;
-use Cosma\Bundle\TestingBundle\TestCase\SolrTestCase;
+use AppBundle\TestCase\SolrDBTestCase;
 
-class SolrTestCaseTest extends SolrTestCase
+class SolrDBTestCaseTest extends SolrDBTestCase
 {
     public function setUp()
     {
         parent::setUp();
+
+        $this->loadFixtures(['AppBundle:Table:Book']);
     }
 
     public function testGetKernel()
