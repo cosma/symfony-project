@@ -28,7 +28,7 @@ database:
     - cp app/config/parameters.yml.ci app/config/parameters.yml
   post:
     - cp -R /opt/solr-4.3.1 $HOME/solr
-    - cp config/schema.xml $HOME/solr/example/solr/collection1/conf
+#    - cp config/schema.xml $HOME/solr/example/solr/collection1/conf
     # optional: - cp config/solrconfig.xml $HOME/solr/example/solr/collection1/conf
     - cd $HOME/solr/example; java -jar start.jar >> $HOME/solr.log:
         background: true
