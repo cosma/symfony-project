@@ -99,13 +99,13 @@ class SolrTestCaseTest extends SolrTestCase
         /**
          * add the documents and a commit command to the update query
          */
-        $update->addDocuments([$documentOne, $documentTwo]);
-        $update->addCommit();
+        //$update->addDocuments([$documentOne, $documentTwo]);
+        //$update->addCommit();
 
         /**
          * execute query
          */
-        $solariumClient->update($update);
+        //$solariumClient->update($update);
     }
 
 

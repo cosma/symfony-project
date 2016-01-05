@@ -13,6 +13,10 @@ db:
         MYSQL_DATABASE: symfony
         MYSQL_USER: symfony
         MYSQL_PASSWORD: symfony
+solr:
+    image: solr
+    ports:
+        - 8983:8983
 php:
     build: ./docker/php-fpm
     expose:
@@ -21,6 +25,7 @@ php:
         - application
     links:
         - db
+        - solr
 nginx:
     build: ./docker/nginx
     ports:

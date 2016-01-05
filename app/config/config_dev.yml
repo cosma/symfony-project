@@ -46,3 +46,8 @@ assetic:
 
 #swiftmailer:
 #    delivery_address: me@example.com
+
+cosma_testing:
+    solarium:
+        host: solr
+        port: 8983
