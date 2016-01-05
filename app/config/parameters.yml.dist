@@ -18,5 +18,5 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
 
-    solr_host:    "%solr_host%"
-    sol_port:     "%sol_port%"
+    solr_host:    solr
+    sol_port:     8983
