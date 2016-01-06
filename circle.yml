@@ -37,8 +37,7 @@ database:
 test:
   override:
     - mkdir -p $CIRCLE_TEST_REPORTS/phpunit
-    - vendor/phpunit/phpunit/phpunit -c app/ --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml --coverage-text src/
-
+    - vendor/phpunit/phpunit/phpunit -c app/ --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml --coverage-text src/ --debug
 
 
 
