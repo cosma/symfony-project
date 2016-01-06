@@ -19,6 +19,7 @@ machine:
 dependencies:
   pre:
     - echo "zend_extension=xdebug.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+    - echo "memory_limit = 2048M" > ~/.phpenv/versions/$(phpenv global)/etc/conf.d/memory.ini
 
   cache_directories:
     - "vendor"
