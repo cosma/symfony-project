@@ -4,8 +4,8 @@
 parameters:
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     symfony
-    database_user:     symfony
+    database_name:     circle_test
+    database_user:     ubuntu
     database_password: ~
     mailer_transport:  smtp
     mailer_host:       127.0.0.1

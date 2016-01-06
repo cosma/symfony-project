@@ -14,7 +14,7 @@ machine:
   environment:
       JAVA_OPTIONS: "-Xms512m -Xmx1024m"
       CIRCLE_ENV: test
-      DATABASE_URL: mysql://symfony:@127.0.0.1:3306/symfony
+      DATABASE_URL: mysql://ubuntu:@127.0.0.1:3306/circle_test
 
 dependencies:
   pre:
