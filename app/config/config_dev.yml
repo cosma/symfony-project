@@ -48,6 +48,8 @@ assetic:
 #    delivery_address: me@example.com
 
 cosma_testing:
+    doctrine:
+        cleaning_strategy: truncate
     solarium:
         host: "%solr_host%"
         port: "%solr_port%"

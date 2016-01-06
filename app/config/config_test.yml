@@ -14,8 +14,3 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
-
-
-cosma_testing:
-    doctrine:
-        cleaning_strategy: truncate
