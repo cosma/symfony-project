@@ -49,5 +49,5 @@ assetic:
 
 cosma_testing:
     solarium:
-        host: solr
-        port: 8983
+        host: "%solr_host%"
+        port: "%solr_port%"
