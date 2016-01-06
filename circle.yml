@@ -14,7 +14,7 @@ machine:
   environment:
       JAVA_OPTIONS: "-Xms512m -Xmx1024m"
       CIRCLE_ENV: test
-      DATABASE_URL: mysql://ubuntu:@127.0.0.1:3306/circle_test
+      DATABASE_URL: mysql://symfony:@127.0.0.1:3306/symfony
 
 dependencies:
   pre:
@@ -32,6 +32,7 @@ database:
     # optional: - cp config/solrconfig.xml $HOME/solr/example/solr/collection1/conf
     - cd $HOME/solr/example; java -jar start.jar >> $HOME/solr.log:
         background: true
+    - bin/solr create_core -c test
 
 test:
   override:
