@@ -19,4 +19,4 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     solr_host:    solr
-    sol_port:     8983
+    solr_port:     8983
