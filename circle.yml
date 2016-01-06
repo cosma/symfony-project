@@ -33,7 +33,8 @@ database:
     # optional: - cp config/solrconfig.xml $HOME/solr/example/solr/collection1/conf
     - cd $HOME/solr/example; java -jar start.jar >> $HOME/solr.log:
         background: true
-#    - bin/solr create_core -c test
+    - sleep 2
+    - curl http://localhost:8983/solr/admin/cores?action=CREATE&name=coreX&instanceDir=path_to_instance_directory&config=config_file_name.xml&schema=schema_file_name.xml&dataDir=data
 
 test:
   override:
