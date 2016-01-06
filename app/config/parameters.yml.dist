@@ -19,5 +19,5 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     solr_host:    solr
-    solr_port:     8983
-    solr_core:     test
+    solr_port:    8983
+    solr_core:    test
