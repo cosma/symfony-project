@@ -32,7 +32,7 @@ database:
     # optional: - cp config/solrconfig.xml $HOME/solr/example/solr/collection1/conf
     - cd $HOME/solr/example; java -jar start.jar >> $HOME/solr.log:
         background: true
-    - bin/solr create_core -c test
+#    - bin/solr create_core -c test
 
 test:
   override:
