@@ -14,3 +14,4 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
     solr_host:         localhost
     solr_port:          8983
+    solr_core:     collection1

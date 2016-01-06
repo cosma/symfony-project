@@ -53,3 +53,4 @@ cosma_testing:
     solarium:
         host: "%solr_host%"
         port: "%solr_port%"
+        core: "%solr_core%"
