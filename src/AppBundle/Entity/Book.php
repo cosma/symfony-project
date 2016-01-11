@@ -51,6 +51,11 @@ class Book
      */
     private $description;
 
+    public function __construct()
+    {
+    }
+
+
     /**
      * @return integer
      */
@@ -119,4 +124,68 @@ class Book
         return $this;
     }
 
+}
+
+
+trait CevaTrait
+{
+    public function __construct()
+    {
+    }
+
+    public function firstPublicMethod()
+    {
+    }
+
+    public function secondPublicMethod()
+    {
+    }
+
+    protected function firstProtectedMethod()
+    {
+    }
+
+    protected function secondProtectedMethod()
+    {
+    }
+
+    private function firstPrivateMethod()
+    {
+    }
+
+    private function secondPrivateMethod()
+    {
+    }
+}
+
+abstract class AnotherClass
+{
+
+    public function __construct()
+    {
+    }
+
+    public function firstPublicMethodAnother()
+    {
+    }
+
+    public function secondPublicMethodAnother()
+    {
+    }
+
+    protected function firstProtectedMethodAnother()
+    {
+    }
+
+    protected function secondProtectedMethodAnother()
+    {
+    }
+
+    private function firstPrivateMethodAnother()
+    {
+    }
+
+    private function secondPrivateMethodAnother()
+    {
+    }
 }
