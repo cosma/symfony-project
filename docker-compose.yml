@@ -17,6 +17,10 @@ solr:
     image: solr
     ports:
         - 8983:8983
+redis:
+    image: redis
+    ports:
+        - 6379:6379
 php:
     build: ./docker/php-fpm
     expose:
@@ -26,6 +30,7 @@ php:
     links:
         - db
         - solr
+        - redis
 nginx:
     build: ./docker/nginx
     ports:

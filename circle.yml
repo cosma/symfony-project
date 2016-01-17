@@ -39,7 +39,7 @@ database:
 test:
   override:
     - mkdir -p $CIRCLE_TEST_REPORTS/phpunit
-    - SYMFONY_DEPRECATIONS_HELPER=weak  vendor/phpunit/phpunit/phpunit -c app/ --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml --coverage-text src/
+    - SYMFONY_DEPRECATIONS_HELPER=weak  vendor/phpunit/phpunit/phpunit -c app/ --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml --coverage-text src/ --debug
 
 
 
