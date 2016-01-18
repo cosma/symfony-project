@@ -23,3 +23,5 @@ parameters:
     solr_core:    test
 
     elasticsearch_host: elasticsearch
+
+    redis_host: redis

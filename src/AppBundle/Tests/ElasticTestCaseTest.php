@@ -77,7 +77,7 @@ class ElasticTestCaseTest extends ElasticTestCase
         $this->assertInstanceOf('Elastic\Index', $this->getElasticIndex());
     }
 
-    public function testElastic()
+    public function testElasticFirst()
     {
         $anotherElasticIndex = $this->getElasticClient()->getIndex('another_index');
         $anotherElasticIndex->create([], true);
@@ -96,7 +96,7 @@ class ElasticTestCaseTest extends ElasticTestCase
             new Document(3, ['username' => 'someotherUser'])
         );
 
-        $elasticIndex->refresh();
+        $this->getElasticIndex()->refresh();
 
         $query = [
             'query' => [
@@ -106,12 +106,40 @@ class ElasticTestCaseTest extends ElasticTestCase
             ]
         ];
 
-        $path = $elasticIndex->getName() . '/' . $type->getName() . '/_search';
+        $path = $this->getElasticIndex()->getName() . '/' . $type->getName() . '/_search';
 
-        $response = $elasticClient->request($path, Request::GET, $query);
+        $response = $this->getElasticClient()->request($path, Request::GET, $query);
 
         $responseArray = $response->getData();
 
         $this->assertEquals(3, $responseArray['hits']['total']);
+    }
+
+    public function testElasticSecond()
+    {
+
+        $type = $this->getElasticIndex()->getType('type');
+
+        $type->addDocument(
+            new Document(1, ['username' => 'cosmaUser'])
+        );
+
+        $this->getElasticIndex()->refresh();
+
+        $query = [
+            'query' => [
+                'query_string' => [
+                    'query' => '*User',
+                ]
+            ]
+        ];
+
+        $path = $this->getElasticIndex()->getName() . '/' . $type->getName() . '/_search';
+
+        $response = $this->getElasticClient()->request($path, Request::GET, $query);
+
+        $responseArray = $response->getData();
+
+        $this->assertEquals(1, $responseArray['hits']['total']);
     }
 }

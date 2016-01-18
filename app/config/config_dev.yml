@@ -54,3 +54,5 @@ cosma_testing:
         core: "%solr_core%"
     elastica:
         host: "%elasticsearch_host%"
+    redis:
+        host: "%redis_host%"
