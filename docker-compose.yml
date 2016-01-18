@@ -21,6 +21,10 @@ redis:
     image: redis
     ports:
         - 6379:6379
+elasticsearch:
+    image: elasticsearch
+    ports:
+        - 9200:9200
 php:
     build: ./docker/php-fpm
     expose:
@@ -31,6 +35,7 @@ php:
         - db
         - solr
         - redis
+        - elasticsearch
 nginx:
     build: ./docker/nginx
     ports:

@@ -21,3 +21,5 @@ parameters:
     solr_host:    solr
     solr_port:    8983
     solr_core:    test
+
+    elasticsearch_host: elasticsearch

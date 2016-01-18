@@ -17,7 +17,6 @@ use Cosma\Bundle\TestingBundle\TestCase\DBTestCase;
 
 class DBTestCaseTest extends DBTestCase
 {
-
     public function setUp()
     {
         parent::setUp();

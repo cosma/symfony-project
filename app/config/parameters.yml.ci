@@ -15,3 +15,5 @@ parameters:
     solr_host:         localhost
     solr_port:          8983
     solr_core:     collection1
+    elasticsearch_host:     127.0.0.1
+

@@ -13,10 +13,11 @@
 
 namespace AppBundle\Tests;
 
-use Cosma\Bundle\TestingBundle\TestCase\DBTestCase;
-use Cosma\Bundle\TestingBundle\TestCase\SolrTestCase;
+use Cosma\Bundle\TestingBundle\TestCase\ElasticTestCase;
+use Elastica\Document;
+use Elastica\Request;
 
-class SolrTestCaseTest extends SolrTestCase
+class ElasticTestCaseTest extends ElasticTestCase
 {
     public function testGetKernel()
     {
@@ -66,44 +67,51 @@ class SolrTestCaseTest extends SolrTestCase
         $this->assertEquals(35, $book->getId());
     }
 
-    public function testSolr()
+    public function teastGetElasticClient()
     {
-        $solariumClient = $this->getSolariumClient();
-
-        /**
-         * get an update query instance
-         */
-        $update = $solariumClient->createUpdate();
-
-        /**
-         * first fixture document
-         */
-        $documentOne = $update->createDocument();
-        $documentOne->id = 123;
-        $documentOne->name = 'testdoc-1';
-        $documentOne->price = 364;
-
-        /**
-         * second fixture document
-         */
-        $documentTwo = $update->createDocument();
-        $documentTwo->id = 124;
-        $documentTwo->name = 'testdoc-2';
-        $documentTwo->price = 340;
-
-        /**
-         * add the documents and a commit command to the update query
-         */
-        $update->addDocuments([$documentOne, $documentTwo]);
-        $update->addCommit();
-
-        /**
-         * execute query
-         */
-        $solariumClient->update($update);
+        $this->assertInstanceOf('Elastic\Client', $this->getElasticClient());
     }
 
+    public function teastGetElasticIndex()
+    {
+        $this->assertInstanceOf('Elastic\Index', $this->getElasticIndex());
+    }
 
+    public function testElastic()
+    {
+        $anotherElasticIndex = $this->getElasticClient()->getIndex('another_index');
+        $anotherElasticIndex->create([], true);
 
+        $type = $this->getElasticIndex()->getType('type');
 
+        $type->addDocument(
+            new Document(1, ['username' => 'someUser'])
+        );
+
+        $type->addDocument(
+            new Document(2, ['username' => 'anotherUser'])
+        );
+
+        $type->addDocument(
+            new Document(3, ['username' => 'someotherUser'])
+        );
+
+        $elasticIndex->refresh();
+
+        $query = [
+            'query' => [
+                'query_string' => [
+                    'query' => '*User',
+                ]
+            ]
+        ];
+
+        $path = $elasticIndex->getName() . '/' . $type->getName() . '/_search';
+
+        $response = $elasticClient->request($path, Request::GET, $query);
+
+        $responseArray = $response->getData();
+
+        $this->assertEquals(3, $responseArray['hits']['total']);
+    }
 }
