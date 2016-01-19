@@ -36,6 +36,7 @@ php:
         - solr
         - redis
         - elasticsearch
+        - selenium
 nginx:
     build: ./docker/nginx
     ports:
@@ -57,3 +58,15 @@ elk:
         - application
         - php
         - nginx
+
+selenium:
+    image: selenium/hub
+    ports:
+        - "4444:4444"
+
+chrome:
+    image: selenium/node-chrome
+    ports:
+        - "5555:5555"
+    links:
+        - selenium:hub

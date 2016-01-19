@@ -56,3 +56,6 @@ cosma_testing:
         host: "%elasticsearch_host%"
     redis:
         host: "%redis_host%"
+    selenium:
+        remote_server_url: "%selenium_url%"
+        test_domain: "%selenium_test_domain%"

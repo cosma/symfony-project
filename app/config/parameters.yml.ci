@@ -17,4 +17,6 @@ parameters:
     solr_core:          collection1
     elasticsearch_host: 127.0.0.1
     redis_host:         127.0.0.1
+    selenium_url: http://127.0.0.1:4444/wd/hub
+    selenium_test_domain: localhost:8181
 

@@ -13,7 +13,6 @@
 
 namespace AppBundle\Tests;
 
-use Cosma\Bundle\TestingBundle\TestCase\DBTestCase;
 use Cosma\Bundle\TestingBundle\TestCase\SolrTestCase;
 
 class SolrTestCaseTest extends SolrTestCase
