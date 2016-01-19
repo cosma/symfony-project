@@ -2,12 +2,15 @@ checkout:
   post:
     - git submodule sync
     - git submodule update --init
+    - mkdir -p downloads
 
 machine:
   timezone:
     UTC
   php:
     version: 5.6.14
+  hosts:
+    symfony.local: 127.0.0.1
   services:
       - mysql
       - elasticsearch
@@ -22,22 +25,35 @@ dependencies:
     - echo "zend_extension=xdebug.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     - echo "memory_limit = 2048M" > ~/.phpenv/versions/$(phpenv global)/etc/conf.d/memory.ini
 
+  post:
+    - if [[ ! -e downloads/selenium-server-standalone.jar ]]; then wget -O downloads/selenium-server-standalone.jar http://selenium-release.storage.googleapis.com/2.46/selenium-server-standalone-2.46.0.jar; fi
+
+    - java -jar downloads/selenium-server-standalone.jar -log app/logs/hub.log -role hub -hubConfig app/selenium_hub.json:
+        background: true
+
+    - java -jar downloads/selenium-server-standalone.jar -log app/logs/node.log -role node -nodeConfig app/selenium_node.json:
+        background: true
+
   cache_directories:
     - "vendor"
+    - "downloads"
 
 database:
   pre:
     - cp app/config/parameters.yml.ci app/config/parameters.yml
   post:
     - cp -R /opt/solr-4.3.1 $HOME/solr
-#    - cp config/schema.xml $HOME/solr/example/solr/collection1/conf
-    # optional: - cp config/solrconfig.xml $HOME/solr/example/solr/collection1/conf
     - cd $HOME/solr/example; java -jar start.jar >> $HOME/solr.log:
         background: true
     - sleep 2
     - curl http://localhost:8983/solr/admin/cores?action=CREATE&name=test&instanceDir=$HOME/solr/example/solr/test&dataDir=data
 
 test:
+  pre:
+    - php app/console server:start 0.0.0.0:8181 --env=test --router=app/config/router_test.php:
+          background: true
+    - sleep 1
+
   override:
     - mkdir -p $CIRCLE_TEST_REPORTS/phpunit
     - SYMFONY_DEPRECATIONS_HELPER=weak  vendor/phpunit/phpunit/phpunit -c app/ --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml --coverage-text src/
