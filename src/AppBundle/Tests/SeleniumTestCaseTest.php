@@ -19,6 +19,14 @@ use Facebook\WebDriver\WebDriverExpectedCondition;
 
 class SeleniumTestCaseTest extends SeleniumTestCase
 {
+
+    protected function setUp()
+    {
+        parent::setUp();
+
+    }
+
+
 //    public function testGetKernel()
 //    {
 //        $kernel = $this->getKernel();
