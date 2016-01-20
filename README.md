@@ -49,4 +49,11 @@ Docker containers expose Nginx on port 80, MySQL on port 3306 and  Kibana server
 
 ## Tests
 Run in console:
-    `bin/phpunit -c app/ --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml --coverage-text src/`
+
+`docker-compose run php /bin/sh -c 'cd /var/www/symfony && php bin/phpunit -c app/ src/'`
+
+OR
+
+`bin/phpunit -c app/ --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml --coverage-text src/`
+
+

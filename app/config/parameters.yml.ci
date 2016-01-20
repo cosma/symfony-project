@@ -18,5 +18,5 @@ parameters:
     elasticsearch_host: 127.0.0.1
     redis_host:         127.0.0.1
     selenium_url: http://127.0.0.1:4444/wd/hub
-    selenium_test_domain: symfony.local:8181
+    selenium_test_domain: 127.0.0.1:8181
 

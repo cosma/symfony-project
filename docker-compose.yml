@@ -63,6 +63,10 @@ selenium:
     image: selenium/hub
     ports:
         - "4444:4444"
+    environment:
+      - GRID_TIMEOUT=10000
+    extra_hosts:
+     - "nginx:172.17.42.1"
 
 chrome:
     image: selenium/node-chrome

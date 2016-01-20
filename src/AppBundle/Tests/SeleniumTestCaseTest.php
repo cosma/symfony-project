@@ -19,63 +19,55 @@ use Facebook\WebDriver\WebDriverExpectedCondition;
 
 class SeleniumTestCaseTest extends SeleniumTestCase
 {
-
-    protected function setUp()
+    public function testGetKernel()
     {
-        parent::setUp();
-
+        $kernel = $this->getKernel();
+        $this->assertInstanceOf('\Symfony\Component\HttpKernel\KernelInterface', $kernel);
     }
 
+    public function testGetContainer()
+    {
+        $container = $this->getContainer();
+        $this->assertInstanceOf('\Symfony\Component\DependencyInjection\ContainerInterface', $container);
+    }
 
-//    public function testGetKernel()
-//    {
-//        $kernel = $this->getKernel();
-//        $this->assertInstanceOf('\Symfony\Component\HttpKernel\KernelInterface', $kernel);
-//    }
-//
-//    public function testGetContainer()
-//    {
-//        $container = $this->getContainer();
-//        $this->assertInstanceOf('\Symfony\Component\DependencyInjection\ContainerInterface', $container);
-//    }
-//
-//    public function testGetClient()
-//    {
-//        $client = $this->getClient();
-//        $this->assertInstanceOf('\Symfony\Bundle\FrameworkBundle\Client', $client);
-//    }
-//
-//    public function testGetEntityWithId()
-//    {
-//        /** @type \AppBundle\Entity\Book $book */
-//        $book = $this->getEntityWithId('\AppBundle\Entity\Book', 3);
-//
-//        $this->assertInstanceOf('\AppBundle\Entity\Book', $book);
-//
-//        $this->assertEquals(3, $book->getId());
-//    }
-//
-//    public function testGetMockedEntityWithId()
-//    {
-//        /** @type \AppBundle\Entity\Book $book */
-//        $book = $this->getMockedEntityWithId('\AppBundle\Entity\Book', 3);
-//
-//        $this->assertInstanceOf('\AppBundle\Entity\Book', $book);
-//
-//        $this->assertEquals(3, $book->getId());
-//    }
-//
-//    public function testGetMockedEntityWithId_ShortName()
-//    {
-//        /** @type \AppBundle\Entity\Book $book */
-//        $book = $this->getMockedEntityWithId('AppBundle:Book', 35);
-//
-//        $this->assertInstanceOf('\AppBundle\Entity\Book', $book);
-//
-//        $this->assertEquals(35, $book->getId());
-//    }
+    public function testGetClient()
+    {
+        $client = $this->getClient();
+        $this->assertInstanceOf('\Symfony\Bundle\FrameworkBundle\Client', $client);
+    }
 
-    public function testSeleniumCosma()
+    public function testGetEntityWithId()
+    {
+        /** @type \AppBundle\Entity\Book $book */
+        $book = $this->getEntityWithId('\AppBundle\Entity\Book', 3);
+
+        $this->assertInstanceOf('\AppBundle\Entity\Book', $book);
+
+        $this->assertEquals(3, $book->getId());
+    }
+
+    public function testGetMockedEntityWithId()
+    {
+        /** @type \AppBundle\Entity\Book $book */
+        $book = $this->getMockedEntityWithId('\AppBundle\Entity\Book', 3);
+
+        $this->assertInstanceOf('\AppBundle\Entity\Book', $book);
+
+        $this->assertEquals(3, $book->getId());
+    }
+
+    public function testGetMockedEntityWithId_ShortName()
+    {
+        /** @type \AppBundle\Entity\Book $book */
+        $book = $this->getMockedEntityWithId('AppBundle:Book', 35);
+
+        $this->assertInstanceOf('\AppBundle\Entity\Book', $book);
+
+        $this->assertEquals(35, $book->getId());
+    }
+
+    public function testSelenium_One()
     {
         $remoteWebDriver = $this->open('/cosma');
 
@@ -91,7 +83,7 @@ class SeleniumTestCaseTest extends SeleniumTestCase
 
     }
 
-    public function testSelenium()
+    public function testSelenium_Two()
     {
         $remoteWebDriver = $this->open('/');
         $title = $remoteWebDriver->getTitle();
