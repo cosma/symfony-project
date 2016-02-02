@@ -20,7 +20,8 @@ class DBTestCaseTest extends DBTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->dropDatabase();
+
+        $this->loadFixtures(['AppBundle:Table:Book']);
     }
 
     public function testKernel()
@@ -83,14 +84,23 @@ class DBTestCaseTest extends DBTestCase
         $this->assertInstanceOf('\Doctrine\ORM\EntityRepository', $entityRepository);
     }
 
-    public function testLoadFixtures()
+    public function testDropDatabase()
     {
-        $bookRepository = $this->getKernel()->getContainer()->get('doctrine')->getRepository('AppBundle:Book');
+        $bookRepository = $this->getEntityRepository('AppBundle:Book');
+
+        $this->dropDatabase();
 
         $this->assertEmpty($bookRepository->findAll());
+    }
 
-        $fixtures = $this->loadFixtures(['AppBundle:Table:Book']);
+    public function testLoadFixtures()
+    {
+        $bookRepository = $this->getEntityRepository('AppBundle:Book');
 
-        $this->assertCount(5, $bookRepository->findAll());
+        $this->loadFixtures(['AppBundle:Table:Book'], false);
+
+        $this->loadFixtures(['AppBundle:Table:Book'], false);
+
+        $this->assertCount(15, $bookRepository->findAll());
     }
 }
