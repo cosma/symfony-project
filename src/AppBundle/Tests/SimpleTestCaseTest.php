@@ -33,13 +33,4 @@ class SimpleTestCaseTest extends SimpleTestCase
 
         $this->assertEquals(3, $book->getId());
     }
-
-    public function testGetTestClassPath(){
-
-        $testClass = $this->getTestClassPath();
-
-        $this->assertEquals('AppBundle/Tests/SimpleTestCaseTest', $testClass);
-
-    }
-    
 }

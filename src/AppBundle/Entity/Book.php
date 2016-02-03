@@ -13,6 +13,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -51,8 +52,16 @@ class Book
      */
     private $description;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Author", mappedBy="books")
+     */
+    private $authors;
+
     public function __construct()
     {
+        $this->authors = new ArrayCollection();
     }
 
 
@@ -124,6 +133,13 @@ class Book
         return $this;
     }
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getAuthors()
+    {
+        return $this->authors;
+    }
 }
 
 

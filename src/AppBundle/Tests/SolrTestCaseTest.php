@@ -17,16 +17,13 @@ use Cosma\Bundle\TestingBundle\TestCase\SolrTestCase;
 
 class SolrTestCaseTest extends SolrTestCase
 {
-    public function testGetKernel()
+    public function setUp()
     {
-        $kernel = $this->getKernel();
-        $this->assertInstanceOf('\Symfony\Component\HttpKernel\KernelInterface', $kernel);
-    }
+        parent::setUp();
 
-    public function testGetContainer()
-    {
-        $container = $this->getContainer();
-        $this->assertInstanceOf('\Symfony\Component\DependencyInjection\ContainerInterface', $container);
+        $this->loadTableFixtures(
+            ['Book', 'Author']
+        );
     }
 
     public function testGetClient()
@@ -65,6 +62,20 @@ class SolrTestCaseTest extends SolrTestCase
         $this->assertEquals(35, $book->getId());
     }
 
+    public function testLoadFixtures()
+    {
+        $bookRepository = $this->getEntityRepository('AppBundle:Book');
+        $authorRepository = $this->getEntityRepository('AppBundle:Author');
+
+        $this->loadFixtures(['src/AppBundle/Fixture/Table/Book.yml'], false);
+
+        $this->loadCustomFixtures(['Fixture/Table/Book'], false);
+
+        $this->assertCount(15, $bookRepository->findAll());
+
+        $this->assertCount(3, $authorRepository->findAll());
+    }
+
     public function testSolr()
     {
         $solariumClient = $this->getSolariumClient();
@@ -77,17 +88,17 @@ class SolrTestCaseTest extends SolrTestCase
         /**
          * first fixture document
          */
-        $documentOne = $update->createDocument();
-        $documentOne->id = 123;
-        $documentOne->name = 'testdoc-1';
+        $documentOne        = $update->createDocument();
+        $documentOne->id    = 123;
+        $documentOne->name  = 'testdoc-1';
         $documentOne->price = 364;
 
         /**
          * second fixture document
          */
-        $documentTwo = $update->createDocument();
-        $documentTwo->id = 124;
-        $documentTwo->name = 'testdoc-2';
+        $documentTwo        = $update->createDocument();
+        $documentTwo->id    = 124;
+        $documentTwo->name  = 'testdoc-2';
         $documentTwo->price = 340;
 
         /**
@@ -101,8 +112,5 @@ class SolrTestCaseTest extends SolrTestCase
          */
         $solariumClient->update($update);
     }
-
-
-
 
 }

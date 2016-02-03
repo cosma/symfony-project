@@ -17,16 +17,14 @@ use Cosma\Bundle\TestingBundle\TestCase\WebTestCase;
 
 class WebTestCaseTest extends WebTestCase
 {
-    public function testGetKernel()
-    {
-        $kernel = $this->getKernel();
-        $this->assertInstanceOf('\Symfony\Component\HttpKernel\KernelInterface', $kernel);
-    }
 
-    public function testGetContainer()
+    public function setUp()
     {
-        $container = $this->getContainer();
-        $this->assertInstanceOf('\Symfony\Component\DependencyInjection\ContainerInterface', $container);
+        parent::setUp();
+
+        $this->loadTableFixtures(
+            ['Book', 'Author']
+        );
     }
 
     public function testGetClient()
@@ -53,5 +51,41 @@ class WebTestCaseTest extends WebTestCase
         $this->assertInstanceOf('\AppBundle\Entity\Book', $book);
 
         $this->assertEquals(3, $book->getId());
+    }
+
+    public function testGetMockedEntityWithId_ShortName()
+    {
+        /** @type \AppBundle\Entity\Book $book */
+        $book = $this->getMockedEntityWithId('AppBundle:Book', 35);
+
+        $this->assertInstanceOf('\AppBundle\Entity\Book', $book);
+
+        $this->assertEquals(35, $book->getId());
+    }
+
+    public function testGetEntityManager()
+    {
+        $entityManager = $this->getEntityManager();
+        $this->assertInstanceOf('\Doctrine\ORM\EntityManager', $entityManager);
+    }
+
+    public function testGetEntityRepository()
+    {
+        $entityRepository = $this->getEntityRepository('AppBundle:Book');
+        $this->assertInstanceOf('\Doctrine\ORM\EntityRepository', $entityRepository);
+    }
+
+    public function testLoadFixtures()
+    {
+        $bookRepository = $this->getEntityRepository('AppBundle:Book');
+        $authorRepository = $this->getEntityRepository('AppBundle:Author');
+
+        $this->loadFixtures(['src/AppBundle/Fixture/Table/Book.yml'], false);
+
+        $this->loadCustomFixtures(['Fixture/Table/Book'], false);
+
+        $this->assertCount(15, $bookRepository->findAll());
+
+        $this->assertCount(3, $authorRepository->findAll());
     }
 }

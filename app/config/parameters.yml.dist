@@ -27,6 +27,6 @@ parameters:
     redis_host: redis
 
     selenium_url: http://selenium:4444/wd/hub
-    selenium_test_domain: 172.17.42.1
+    selenium_test_domain: http://172.17.42.1
 
 

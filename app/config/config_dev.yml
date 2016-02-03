@@ -57,5 +57,5 @@ cosma_testing:
     redis:
         host: "%redis_host%"
     selenium:
-        remote_server_url: "%selenium_url%"
-        test_domain: "%selenium_test_domain%"
+        server: "%selenium_url%"
+        domain: "%selenium_test_domain%"

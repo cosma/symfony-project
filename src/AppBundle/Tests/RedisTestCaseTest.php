@@ -17,16 +17,13 @@ use Cosma\Bundle\TestingBundle\TestCase\RedisTestCase;
 
 class RedisTestCaseTest extends RedisTestCase
 {
-    public function testGetKernel()
+    public function setUp()
     {
-        $kernel = $this->getKernel();
-        $this->assertInstanceOf('\Symfony\Component\HttpKernel\KernelInterface', $kernel);
-    }
+        parent::setUp();
 
-    public function testGetContainer()
-    {
-        $container = $this->getContainer();
-        $this->assertInstanceOf('\Symfony\Component\DependencyInjection\ContainerInterface', $container);
+        $this->loadTableFixtures(
+            ['Book', 'Author']
+        );
     }
 
     public function testGetClient()
@@ -63,6 +60,20 @@ class RedisTestCaseTest extends RedisTestCase
         $this->assertInstanceOf('\AppBundle\Entity\Book', $book);
 
         $this->assertEquals(35, $book->getId());
+    }
+
+    public function testLoadFixtures()
+    {
+        $bookRepository = $this->getEntityRepository('AppBundle:Book');
+        $authorRepository = $this->getEntityRepository('AppBundle:Author');
+
+        $this->loadFixtures(['src/AppBundle/Fixture/Table/Book.yml'], false);
+
+        $this->loadCustomFixtures(['Fixture/Table/Book'], false);
+
+        $this->assertCount(15, $bookRepository->findAll());
+
+        $this->assertCount(3, $authorRepository->findAll());
     }
 
     public function teastGetRedisClient()
