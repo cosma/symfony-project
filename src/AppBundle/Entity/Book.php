@@ -10,9 +10,9 @@
  * Date: 23/10/15
  * Time: 08:12
  */
-
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -29,32 +29,35 @@ class Book
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(type="string", length=100)
      */
     private $title;
-
     /**
      * @var float
      *
      * @ORM\Column(type="decimal", scale=2)
      */
     private $price;
-
     /**
      * @var string
      *
      * @ORM\Column(type="text")
      */
     private $description;
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Author", mappedBy="books")
+     */
+    private $authors;
 
     public function __construct()
     {
+        $this->authors = new ArrayCollection();
     }
-
 
     /**
      * @return integer
@@ -124,8 +127,14 @@ class Book
         return $this;
     }
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getAuthors()
+    {
+        return $this->authors;
+    }
 }
-
 
 trait CevaTrait
 {
@@ -160,7 +169,6 @@ trait CevaTrait
 
 abstract class AnotherClass
 {
-
     public function __construct()
     {
     }
