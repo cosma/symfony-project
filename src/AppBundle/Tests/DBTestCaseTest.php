@@ -21,7 +21,7 @@ class DBTestCaseTest extends DBTestCase
     {
         parent::setUp();
 
-        $this->loadFixtures(['AppBundle:Table:Book']);
+        $this->loadFixtures(['AppBundle:Table:Book', 'AppBundle:Table:Author']);
     }
 
     public function testKernel()
@@ -96,11 +96,14 @@ class DBTestCaseTest extends DBTestCase
     public function testLoadFixtures()
     {
         $bookRepository = $this->getEntityRepository('AppBundle:Book');
+        $authorRepository = $this->getEntityRepository('AppBundle:Author');
 
         $this->loadFixtures(['AppBundle:Table:Book'], false);
 
         $this->loadFixtures(['AppBundle:Table:Book'], false);
 
         $this->assertCount(15, $bookRepository->findAll());
+
+        $this->assertCount(3, $authorRepository->findAll());
     }
 }

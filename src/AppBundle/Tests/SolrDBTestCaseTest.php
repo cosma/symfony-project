@@ -21,7 +21,7 @@ class SolrDBTestCaseTest extends SolrDBTestCase
     {
         parent::setUp();
 
-        $this->loadFixtures(['AppBundle:Table:Book']);
+        $this->loadFixtures(['AppBundle:Table:Book', 'AppBundle:Table:Author']);
     }
 
     public function testGetKernel()
