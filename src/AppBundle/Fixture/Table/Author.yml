@@ -2,12 +2,12 @@ AppBundle\Entity\Author:
     author_1:
         name: Michel Houellebecq
         yearOfBirth: 1956
-        books: [@book_1, @book_4, @book_3]
+        books: ["@book_1", "@book_4", "@book_3"]
     author_2:
         name: Vasile Ernu
         yearOfBirth: 1975
-        books: [@book_2]
+        books: ["@book_2"]
     author_3:
         name: Andrei Plesu
         yearOfBirth: 1960
-        books: [@book_5, @book_4]
+        books: ["@book_5", "@book_4"]
