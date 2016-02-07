@@ -21,7 +21,6 @@ class RetryTest extends \Cosma\Bundle\TestingBundle\TestCase\SimpleTestCase
 
     public function testOneOK()
     {
-
         $this->assertTrue(true);
     }
 
@@ -30,22 +29,13 @@ class RetryTest extends \Cosma\Bundle\TestingBundle\TestCase\SimpleTestCase
      */
     public function testFailing()
     {
-        //throw new \Exception('dasdas');
-
         $rand = rand(0, 1);
 
-        //print_r("\n  testing rand: {$rand} \n");
-
         $this->assertEquals(1, $rand, 'here is failing');
-
-
-
-        //$this->assertTrue(false, 'here fails aways' );
     }
 
     public function testTwoOK()
     {
-
         $this->assertTrue(true);
     }
 
