@@ -25,7 +25,7 @@ class RetryTest extends \Cosma\Bundle\TestingBundle\TestCase\SimpleTestCase
     }
 
     /**
-     * @retry 6
+     * @retry 10
      */
     public function testFailing()
     {
