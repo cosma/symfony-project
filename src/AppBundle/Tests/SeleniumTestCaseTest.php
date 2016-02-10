@@ -78,6 +78,9 @@ class SeleniumTestCaseTest extends SeleniumTestCase
         $this->assertCount(3, $authorRepository->findAll());
     }
 
+    /**
+     * @retry 3
+     */
     public function testSelenium_One()
     {
         $remoteWebDriver = $this->open('/cosma');
@@ -94,6 +97,9 @@ class SeleniumTestCaseTest extends SeleniumTestCase
 
     }
 
+    /**
+     * @retry 3
+     */
     public function testSelenium_Two()
     {
         $remoteWebDriver = $this->open('/');
