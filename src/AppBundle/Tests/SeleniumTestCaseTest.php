@@ -102,7 +102,7 @@ class SeleniumTestCaseTest extends SeleniumTestCase
      */
     public function testSelenium_Two()
     {
-        $remoteWebDriver = $this->open('/');
+        $remoteWebDriver = $this->open('/app_test.php');
         $title = $remoteWebDriver->getTitle();
 
         $this->assertEquals('Welcome!', $title, 'page is not loaded');
