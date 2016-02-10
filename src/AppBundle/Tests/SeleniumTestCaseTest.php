@@ -67,6 +67,9 @@ class SeleniumTestCaseTest extends SeleniumTestCase
         $this->assertEquals(35, $book->getId());
     }
 
+    /**
+     * @retry 3
+     */
     public function testSelenium_One()
     {
         $remoteWebDriver = $this->open('/cosma');
@@ -83,9 +86,12 @@ class SeleniumTestCaseTest extends SeleniumTestCase
 
     }
 
+    /**
+     * @retry 3
+     */
     public function testSelenium_Two()
     {
-        $remoteWebDriver = $this->open('/');
+        $remoteWebDriver = $this->open('/app_test.php');
         $title = $remoteWebDriver->getTitle();
 
         $this->assertEquals('Welcome!', $title, 'page is not loaded');
