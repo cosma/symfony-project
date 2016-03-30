@@ -28,7 +28,7 @@ elasticsearch:
 php:
     build: ./docker/php-fpm
     expose:
-        - 9000:9000
+        - "9000"
     volumes_from:
         - application
     links:
